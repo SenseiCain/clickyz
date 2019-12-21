@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     erb :login
   end
 
-  post "/login" do
+  post "/register" do
     @user = User.new(name: params["name"], email: params["email"], password: params["password"])
     @user.save
 
