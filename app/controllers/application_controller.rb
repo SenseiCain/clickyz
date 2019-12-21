@@ -8,7 +8,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :editor
+  end
+
+  get "/orders" do
+    erb :orders
+  end
+
+  get "/information" do
+    erb :information
   end
 
 end
