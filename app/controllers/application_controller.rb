@@ -28,7 +28,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    puts params
 
     redirect to "/"
   end
