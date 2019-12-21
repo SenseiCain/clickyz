@@ -27,4 +27,10 @@ class ApplicationController < Sinatra::Base
     erb :login
   end
 
+  post "/login" do
+    puts params
+
+    redirect to "/"
+  end
+
 end
