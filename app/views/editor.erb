@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Editor</h1>
-        <% if @session[:id] %>
+        <% if Helpers.is_logged_in?(session) %>
+            
             <p>Welcome <%= @user.name %></p>
         <% end %>
         
@@ -21,7 +22,7 @@
             <li><a href="/orders">Orders</a></li>
             <li><a href="/information">Information</a></li>
             
-            <% if @session[:id] %>
+            <% if Helpers.is_logged_in?(session) %>
                 <li><a href="/logout">Log Out</a></li>
             <% else %>
                 <li><a href="/login">Log In</a></li>

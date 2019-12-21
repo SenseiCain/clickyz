@@ -11,11 +11,8 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
 
-    @session = session
-
-    if session[:id]
-      
-      @user = User.find(session[:id])
+    if session[:user_id]
+      @user = User.find(session[:user_id])
     end
 
     erb :editor
@@ -37,7 +34,7 @@ class ApplicationController < Sinatra::Base
     @user = User.new(name: params["name"], email: params["email"], password: params["password"])
     @user.save
 
-    session[:id] = @user.id
+    session[:user_id] = @user.id
 
     redirect to "/"
   end
