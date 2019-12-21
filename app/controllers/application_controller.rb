@@ -10,7 +10,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @user = User.find(session[:id])
+
+    @session = session
+
+    if session[:id]
+      
+      @user = User.find(session[:id])
+    end
 
     erb :editor
   end
@@ -32,6 +38,12 @@ class ApplicationController < Sinatra::Base
     @user.save
 
     session[:id] = @user.id
+
+    redirect to "/"
+  end
+
+  get "/logout" do
+    session.clear
 
     redirect to "/"
   end
