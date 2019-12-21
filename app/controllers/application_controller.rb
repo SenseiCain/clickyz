@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @session = session
+    @user = User.find(session[:id])
 
     erb :editor
   end
