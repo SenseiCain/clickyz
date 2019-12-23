@@ -1,9 +1,6 @@
 require './config/environment'
-require_relative '../helpers/controller_helpers'
 
 class ApplicationController < Sinatra::Base
-
-  helpers ControllerHelpers
 
   configure do
     set :public_folder, 'public'
@@ -15,7 +12,7 @@ class ApplicationController < Sinatra::Base
   get "/" do
 
     if session[:user_id]
-      @user = User.find(session[:user_id])
+      @user = current_user
     end
 
     erb :editor
@@ -34,8 +31,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/register" do
-    @user = User.new(name: params["name"], email: params["email"], password: params["password"])
-    @user.save
+    register(params)
 
     session[:user_id] = @user.id
 
@@ -59,5 +55,22 @@ class ApplicationController < Sinatra::Base
     redirect to "/"
   end
 
+  helpers do 
+    #register, logout
+    def current_user
+      User.find(session[:user_id])
+    end
+
+    def logout
+      session.clear
+    end
+
+    def register(params)
+      #binding.pry
+      @user = User.new(name: params["name"], email: params["email"], password: params["password"])
+      @user.save
+      @user
+    end
+  end
 
 end
