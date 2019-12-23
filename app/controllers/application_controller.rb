@@ -19,10 +19,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/orders" do
+    #build out orders based on user id
     erb :orders
   end
 
   get "/information" do
+    #RESTful pages that show info on cases/switches/keycaps
     erb :information
   end
 
@@ -31,8 +33,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/register" do
-    register(params)
-
+    @user = register(params)
     session[:user_id] = @user.id
 
     redirect to "/"
@@ -41,12 +42,7 @@ class ApplicationController < Sinatra::Base
   post "/sessions" do
 
     #if valid user, go to editor. else login.
-
-
-
-
-
-    redirect to "/"
+    login(params)
   end
 
   get "/logout" do
@@ -65,9 +61,18 @@ class ApplicationController < Sinatra::Base
     end
 
     def register(params)
-      @user = User.new(name: params["name"], email: params["email"], password: params["password"])
-      @user.save
-      @user
+      User.create(name: params["name"], email: params["email"], password: params["password"])
+    end
+
+    def login(params)
+      user = User.find_by(:email => params["email"])
+
+      if user && user.password == params["password"]
+        session[:user_id] = user.id
+        redirect to "/"
+      else
+        redirect to "/login"
+      end
     end
   end
 
