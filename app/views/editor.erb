@@ -5,13 +5,7 @@
 <% end %>
 
 <ul>
-    <li><a href="/information">Information</a></li>
     
-    <% if ViewHelpers.is_logged_in?(session) %>
-        <li><a href="/orders">Orders</a></li>
-        <li><a href="/logout">Log Out</a></li>
-    <% else %>
-        <li><a href="/login">Log In</a></li>
-    <% end %>
+    <%= ViewHelpers.show_editor_links(session) %>
 
 </ul>

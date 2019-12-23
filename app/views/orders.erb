@@ -1,7 +1,5 @@
 <h1>Previous Orders</h1>
 
 <ul>
-    <li><a href="/">Editor</a></li>
-    <li><a href="/information">Information</a></li>
-    <li><a href="/logout">Log Out</a></li>
+    <%= ViewHelpers.show_orders_links(session) %>
 </ul>
