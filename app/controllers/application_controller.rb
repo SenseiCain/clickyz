@@ -1,6 +1,9 @@
 require './config/environment'
+require_relative '../helpers/controller_helpers'
 
 class ApplicationController < Sinatra::Base
+
+  helpers ControllerHelpers
 
   configure do
     set :public_folder, 'public'
@@ -40,13 +43,21 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/sessions" do
+
+    #if valid user, go to editor. else login.
+
+
+
+
+
     redirect to "/"
   end
 
   get "/logout" do
-    session.clear
+    logout
 
     redirect to "/"
   end
+
 
 end
