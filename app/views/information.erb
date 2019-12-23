@@ -2,5 +2,11 @@
 
 <ul>
     <li><a href="/">Editor</a></li>
-    <li><a href="/orders">Orders</a></li>
+
+    <% if ViewHelpers.is_logged_in?(session) %>
+        <li><a href="/orders">Orders</a></li>
+        <li><a href="/logout">Log Out</a></li>
+    <% else %>
+        <li><a href="/login">Log In</a></li>
+    <% end %>
 </ul>
