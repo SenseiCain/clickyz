@@ -100,7 +100,8 @@
     });
 
     //Changes color of keys to set color
-    function changeKeyColor(color){
+    function changeKeyColor(){
+        var color = $('#keycaps_color').val();
 
         $.each(key_tops, function(i, e){
             $(e).css("fill", color)
