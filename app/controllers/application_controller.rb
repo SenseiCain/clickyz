@@ -59,7 +59,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def register(params)
-      User.create(name: params["name"], email: params["email"], password: params["password"])
+      User.create(username: params["username"], email: params["email"], password: params["password"])
     end
 
     def login(params)
