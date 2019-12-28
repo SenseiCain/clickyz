@@ -11,7 +11,7 @@ class ViewHelpers
         links = ["editor", "information"]
 
         if is_logged_in?(session)
-            links.push("logout", "orders")
+            links.push("orders", "logout")
         else
             links.push("login")
         end
