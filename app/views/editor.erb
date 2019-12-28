@@ -11,26 +11,37 @@
         </div>
         <div class="col-3 bg-light text-right">
             <form>
-                <label for="keycaps_color">Keycaps</label>
-                <select name="keycaps" id="keycaps_color" onchange="changeKeyColor()">
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
-                    <option value="Green">Green</option>
-                </select><br>
+                <div class="row">
+                    <label for="keyboard_name">Name<label>
+                    <input type="text" id="keyboard_name" name="keyboard_name"><br>
+                </div>
+                
+                <div class="row">
+                    <label for="keycaps_color">Keycaps</label>
+                    <select name="keycaps" id="keycaps_color" onchange="changeKeyColor()">
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="Green">Green</option>
+                    </select><br>
+                </div>
 
-                <label for="case_color">Case</label>
-                <select name="case" id="case_color" onchange="changeCaseColor()">
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
-                    <option value="Green">Green</option>
-                </select><br>
+                <div class="row">
+                    <label for="case_color">Case</label>
+                    <select name="case" id="case_color" onchange="changeCaseColor()">
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="Green">Green</option>
+                    </select><br>
+                </div>
 
-                <label for="cable_color">Cable</label>
-                <select name="cable" id="cable_color" onchange="changeCableColor()">
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
-                    <option value="Green">Green</option>
-                </select><br>
+                <div class="row">
+                    <label for="cable_color">Cable</label>
+                    <select name="cable" id="cable_color" onchange="changeCableColor()">
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="Green">Green</option>
+                    </select><br>
+                </div>
 
             </form>
         <div>
