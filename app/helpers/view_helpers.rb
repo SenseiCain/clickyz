@@ -7,7 +7,7 @@ class ViewHelpers
         !!session[:user_id]
     end
 
-    def self.show_links(session)
+    def self.show_links(session, path)
         links = ["editor", "information"]
 
         if is_logged_in?(session)
@@ -18,10 +18,12 @@ class ViewHelpers
 
         links.map do |l|
             link = '/' + l
-            (l == "editor") ? link = '/' : link = l
+            (l == "editor") ? link = '/' : link = '/' + l
+
+            #binding.pry
             
             "<li class='nav-item'>
-                <a class='nav-link' href=#{link}>#{l.capitalize()}</a>
+                <a class='nav-link #{(path == link) ? 'active' : ''}' href=#{link}>#{l.capitalize()}</a>
             </li>"
         end.join(" ")
     end
