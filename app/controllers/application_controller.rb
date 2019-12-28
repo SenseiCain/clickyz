@@ -18,12 +18,12 @@ class ApplicationController < Sinatra::Base
     erb :editor
   end
 
-  get "/orders" do
-    #build out orders based on user id
-    erb :orders
+  get "/builds" do
+    #build out builds based on user id
+    erb :builds
   end
 
-  post "/orders" do
+  post "/builds" do
     puts params
     
     redirect to '/'
