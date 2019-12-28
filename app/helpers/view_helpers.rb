@@ -19,8 +19,6 @@ class ViewHelpers
         links.map do |l|
             link = '/' + l
             (l == "editor") ? link = '/' : link = '/' + l
-
-            #binding.pry
             
             "<li class='nav-item'>
                 <a class='nav-link #{(path == link) ? 'active' : ''}' href=#{link}>#{l.capitalize()}</a>
