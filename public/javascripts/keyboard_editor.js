@@ -112,13 +112,17 @@
         });
     };
 
-    function changeCaseColor(color){
+    function changeCaseColor(){
+        var color = $('#case_color').val();
+
         $.each(keyboard_case, function(i, e){
             $(e).css("fill", color)
         });
     };
 
-    function changeCableColor(color){
+    function changeCableColor(){
+        var color = $('#cable_color').val();
+
         $.each(keyboard_cable, function(i, e){
             $(e).css("stroke", color)
         });
