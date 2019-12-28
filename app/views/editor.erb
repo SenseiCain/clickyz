@@ -5,36 +5,19 @@
         <p>Welcome <%= @user.username %></p>
     <% end %>
 
-    
+    <div class="row justify-content-between">
+        <div class="col-6 text-left">
+            <%= File.read('./public/images/keyboard.svg') %>
+        </div>
+        <div class="col-3 bg-light text-right">
+            <form>
+                <label for="keycaps_color">Keycaps</label>
+                <select name="keycaps" id="keycaps_color">
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="Green">Green</option>
+                </select>
+            </form>
+        <div>
+    <div>
 
-<div id="key_options" >
-    <p>Key Color: </p>
-    <div style="background-color: blue" class="button" onclick="changeKeyColor('blue')"></div>
-    <div style="background-color: green" class="button" onclick="changeKeyColor('green')"></div>
-    <div style="background-color: pink" class="button" onclick="changeKeyColor('pink')"></div>
-    <div style="background-color: yellow" class="button" onclick="changeKeyColor('yellow')"></div>
-    <div style="background-color: orange" class="button" onclick="changeKeyColor('orange')"></div>
-    <div style="background-color: purple" class="button" onclick="changeKeyColor('purple')"></div>
-</div>
-
-<div id="case_options" >
-    <p>Case Color: </p>
-    <div style="background-color: silver" class="button" onclick="changeCaseColor('silver')"></div>
-    <div style="background-color: darkred" class="button" onclick="changeCaseColor('darkred')"></div>
-    <div style="background-color: lightseagreen" class="button" onclick="changeCaseColor('lightseagreen')"></div>
-    <div style="background-color: darkolivegreen" class="button" onclick="changeCaseColor('darkolivegreen')"></div>
-    <div style="background-color: orangered" class="button" onclick="changeCaseColor('orangered')"></div>
-    <div style="background-color: purple" class="button" onclick="changeCaseColor('purple')"></div>
-</div>
-
-<div id="cable_options" >
-    <p>Cable Color: </p>
-    <div style="background-color: blue" class="button" onclick="changeCableColor('blue')"></div>
-    <div style="background-color: green" class="button" onclick="changeCableColor('green')"></div>
-    <div style="background-color: pink" class="button" onclick="changeCableColor('pink')"></div>
-    <div style="background-color: yellow" class="button" onclick="changeCableColor('yellow')"></div>
-    <div style="background-color: orange" class="button" onclick="changeCableColor('orange')"></div>
-    <div style="background-color: purple" class="button" onclick="changeCableColor('purple')"></div>
-</div>
-
-<%= File.read('./public/images/keyboard.svg') %>
