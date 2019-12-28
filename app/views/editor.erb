@@ -10,7 +10,7 @@
             <%= File.read('./public/images/keyboard.svg') %>
         </div>
         <div class="col-3 bg-light text-right">
-            <form action="/orders" method="POST">
+            <form action="/builds" method="POST">
                 <div class="row">
                     <label for="keyboard_name">Name<label>
                     <input type="text" id="keyboard_name" name="keyboard_name"><br>
@@ -43,7 +43,9 @@
                     </select><br>
                 </div>
 
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <% if session[:user_id] %>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                <% end %>
 
             </form>
         <div>

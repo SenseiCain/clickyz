@@ -20,13 +20,17 @@ class ApplicationController < Sinatra::Base
 
   get "/builds" do
     #build out builds based on user id
+    @builds = current_user.builds
+    #binding.pry
+
     erb :builds
   end
 
   post "/builds" do
     puts params
+    create_build(params)
     
-    redirect to '/'
+    redirect to '/builds'
   end
 
   get "/information" do
@@ -77,6 +81,13 @@ class ApplicationController < Sinatra::Base
       else
         redirect to "/login"
       end
+    end
+
+    def create_build(params)
+      build = Build.create(name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"])
+      build.user = current_user
+      build.save
+      #binding.pry
     end
   end
 
