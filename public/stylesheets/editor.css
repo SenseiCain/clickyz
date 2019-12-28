@@ -1,0 +1,19 @@
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.button{
+    height: 10px; 
+    width: 70px;
+    cursor: pointer; 
+    display: inline-block;
+}
+
+.darker{
+    filter: grayscale(50%) !important;
+}
+
+svg{
+    border: 1px solid black;
+}
