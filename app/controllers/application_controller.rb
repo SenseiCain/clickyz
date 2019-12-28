@@ -40,8 +40,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/sessions" do
-
-    #if valid user, go to editor. else login.
     login(params)
   end
 

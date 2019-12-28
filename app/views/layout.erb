@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+        <title>Clickyz</title>  
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+
+        <div class="container bg-light">
+            <nav class="d-flex navbar navbar-expand-lg navbar-light">
+                <div class="">
+                    <h1>Clickyz</h1>
+                </div>
+                <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
+                
+                    <ul class="navbar-nav ml-auto flex-nowrap">
+                        <%= ViewHelpers.show_links(session) %>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <%= yield %>
         
