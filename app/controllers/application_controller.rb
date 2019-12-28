@@ -23,6 +23,12 @@ class ApplicationController < Sinatra::Base
     erb :orders
   end
 
+  post "/orders" do
+    puts params
+    
+    redirect to '/'
+  end
+
   get "/information" do
     #RESTful pages that show info on cases/switches/keycaps
     erb :information
