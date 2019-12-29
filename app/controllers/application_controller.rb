@@ -20,6 +20,11 @@ class ApplicationController < Sinatra::Base
 
   get "/builds" do
     #build out builds based on user id
+    if session[:keyboard_data]
+      create_build(session[:keyboard_data])
+      session[:keyboard_data].clear
+    end
+
     @builds = current_user.builds
     #binding.pry
 
@@ -27,10 +32,16 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/builds" do
-    puts params
-    create_build(params)
+
+    if session[:user_id]
+      create_build(params)
+      redirect to '/builds'
+    else
+      session[:keyboard_data] = params
+      redirect to '/login'
+    end
     
-    redirect to '/builds'
+    
   end
 
   get "/information" do
@@ -46,11 +57,32 @@ class ApplicationController < Sinatra::Base
     @user = register(params)
     session[:user_id] = @user.id
 
-    redirect to "/"
+    if session[:keyboard_data]
+      redirect to "/builds"
+    else
+      redirect to "/"
+    end
   end
 
   post "/sessions" do
-    login(params)
+    user = User.find_by(:email => params["email"])
+
+    if session[:keyboard_data]
+      if user && user.authenticate(params["password"])
+        session[:user_id] = user.id
+        redirect to "/builds"
+      else
+        redirect to "/login"
+      end
+    else
+      if user && user.authenticate(params["password"])
+        session[:user_id] = user.id
+        redirect to "/"
+      else
+        redirect to "/login"
+      end
+    end
+
   end
 
   get "/logout" do
@@ -72,22 +104,10 @@ class ApplicationController < Sinatra::Base
       User.create(username: params["username"], email: params["email"], password: params["password"])
     end
 
-    def login(params)
-      user = User.find_by(:email => params["email"])
-
-      if user && user.authenticate(params["password"])
-        session[:user_id] = user.id
-        redirect to "/"
-      else
-        redirect to "/login"
-      end
-    end
-
     def create_build(params)
       build = Build.create(name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"])
       build.user = current_user
       build.save
-      #binding.pry
     end
   end
 
