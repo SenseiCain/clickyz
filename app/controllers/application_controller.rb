@@ -20,9 +20,9 @@ class ApplicationController < Sinatra::Base
 
   get "/builds" do
     #build out builds based on user id
-    if !session[:keyboard_data].values[0].nil?
-      create_build(session[:keyboard_data])
-      session[:keyboard_data].clear
+    if !session[:keyboard_data].nil?
+        create_build(session[:keyboard_data])
+        session.delete(:keyboard_data)
     end
 
     @builds = current_user.builds

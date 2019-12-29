@@ -11,7 +11,7 @@ class ViewHelpers
         links = ["editor", "information"]
 
         if is_logged_in?(session)
-            links.push("builds", "logout")
+            links.push("logged_in")
         else
             links.push("login")
         end
@@ -19,10 +19,22 @@ class ViewHelpers
         links.map do |l|
             link = '/' + l
             (l == "editor") ? link = '/' : link = '/' + l
-            
-            "<li class='nav-item'>
-                <a class='nav-link #{(path == link) ? 'active' : ''}' href=#{link}>#{l.capitalize()}</a>
-            </li>"
+
+            if l == "logged_in"
+                "<li class='nav-item dropdown'>
+                    <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                    #{current_user(session).username}
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                        <a class='dropdown-item' href='/builds'>Builds</a>
+                        <a class='dropdown-item' href='/logout'>Logout</a>
+                    </div>
+                </li>"
+            else
+                "<li class='nav-item'>
+                    <a class='nav-link #{(path == link) ? 'active' : ''}' href=#{link}>#{l.capitalize()}</a>
+                </li>"
+            end
         end.join(" ")
     end
 end
