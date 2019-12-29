@@ -19,14 +19,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/builds" do
-    #build out builds based on user id
     if !session[:keyboard_data].nil?
         create_build(session[:keyboard_data])
         session.delete(:keyboard_data)
     end
 
     @builds = current_user.builds
-    #binding.pry
 
     erb :builds
   end
@@ -40,7 +38,6 @@ class ApplicationController < Sinatra::Base
       session[:keyboard_data] = params
       redirect to '/login'
     end
-    
     
   end
 
