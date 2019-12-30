@@ -19,14 +19,26 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/builds" do
-    if !session[:keyboard_data].nil?
-        create_build(session[:keyboard_data])
-        session.delete(:keyboard_data)
+
+    if session[:user_id]
+      if !session[:keyboard_data].nil?
+          create_build(session[:keyboard_data])
+          session.delete(:keyboard_data)
+      end
+
+      @builds = current_user.builds
+      erb :builds
+    else
+      redirect to '/'
+    end
+  end
+
+  delete "/builds/:id" do
+    if session[:user_id] && current_user.builds.include?(Build.find(params[:id]))
+      Build.find(params[:id]).delete
     end
 
-    @builds = current_user.builds
-
-    erb :builds
+    redirect to '/builds'
   end
 
   post "/builds" do
