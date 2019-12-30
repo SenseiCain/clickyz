@@ -44,8 +44,10 @@ class ApplicationController < Sinatra::Base
   post "/builds" do
 
     if session[:user_id]
+      
+      @build = create_build(params)
       convert_svg_to_jpg(params)
-      create_build(params)
+      binding.pry
       redirect to '/builds'
     else
       session[:keyboard_data] = params
@@ -118,10 +120,11 @@ class ApplicationController < Sinatra::Base
       build = Build.create(name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"])
       build.user = current_user
       build.save
+      build
     end
 
     def convert_svg_to_jpg(params)
-      #binding.pry
+      #generates svg as placeholder
       rand_num = rand(1000)
       filepath = "lib/keyboard_images/temp_svg_#{rand_num}.svg"
       temp_file = File.open(filepath, "w")  do |f| 
@@ -132,16 +135,13 @@ class ApplicationController < Sinatra::Base
         f.write(text_2)
       end
 
+      #converts svg to jpg & save
       image = MiniMagick::Image.open(filepath)
-      #image.resize "100x100"
-      #image.path ''
       image.format "jpg"
       image.write "lib/keyboard_images/keyboard_#{rand_num}.jpg"
 
+      #delete placeholder svg
       File.delete(filepath)
-      #binding.pry
-      
-
     end
   end
 
