@@ -98,23 +98,19 @@
         getKeyboardCase();
         getKeyboardCable();
 
-        //Override default submit
-    $("#build_form").submit(function(e){
-        var svg = $("#keyboard_svg");
-        var svg_text = '<svg>' + svg.html() + '</svg>';
-
-        $.post('/builds',{
-            //name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"]
-
-            svg: svg_text,
-            keyboard_name: $('#keyboard_name').val(),
-            keycaps: $('#keycaps_color').val(),
-            case: $('#case_color').val(),
-            cable: $('#cable_color').val()
-
+        $("#build_form").submit(function(e){
+            var svg = $("#keyboard_svg");
+            var svg_text = '<svg>' + svg.html() + '</svg>';
+    
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'svg',
+                value: svg_text
+            }).appendTo('#build_form');
+    
+            return true;
+    
         });
-
-      });
     });
 
     //Changes color of keys to set color
