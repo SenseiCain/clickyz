@@ -122,13 +122,24 @@ class ApplicationController < Sinatra::Base
 
     def convert_svg_to_jpg(params)
       #binding.pry
-      temp_file = File.open("lib/keyboard_images/temp_svg_#{rand(1000)}.svg", "w")  do |f| 
+      rand_num = rand(1000)
+      filepath = "lib/keyboard_images/temp_svg_#{rand_num}.svg"
+      temp_file = File.open(filepath, "w")  do |f| 
         text_2 = params[:svg]
         text_2.slice! "<svg>"
 
         f.write(File.open('lib/svgs/metadata.txt', 'r').read)
         f.write(text_2)
       end
+
+      image = MiniMagick::Image.open(filepath)
+      #image.resize "100x100"
+      #image.path ''
+      image.format "jpg"
+      image.write "lib/keyboard_images/keyboard_#{rand_num}.jpg"
+
+      File.delete(filepath)
+      #binding.pry
       
 
     end
