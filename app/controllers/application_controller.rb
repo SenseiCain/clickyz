@@ -44,6 +44,7 @@ class ApplicationController < Sinatra::Base
   post "/builds" do
 
     if session[:user_id]
+      convert_svg_to_jpg(params)
       create_build(params)
       redirect to '/builds'
     else
@@ -117,6 +118,19 @@ class ApplicationController < Sinatra::Base
       build = Build.create(name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"])
       build.user = current_user
       build.save
+    end
+
+    def convert_svg_to_jpg(params)
+      #binding.pry
+      temp_file = File.open("lib/keyboard_images/temp_svg_#{rand(1000)}.svg", "w")  do |f| 
+        text_2 = params[:svg]
+        text_2.slice! "<svg>"
+
+        f.write(File.open('lib/svgs/metadata.txt', 'r').read)
+        f.write(text_2)
+      end
+      
+
     end
   end
 

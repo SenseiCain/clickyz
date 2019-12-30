@@ -100,6 +100,7 @@
 
         $("#build_form").submit(function(e){
             var svg = $("#keyboard_svg");
+
             var svg_text = '<svg>' + svg.html() + '</svg>';
     
             $('<input>').attr({
