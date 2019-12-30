@@ -41,6 +41,7 @@ GEM
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     method_source (0.9.2)
+    mini_magick (4.9.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
@@ -115,6 +116,7 @@ DEPENDENCIES
   bcrypt
   capybara
   database_cleaner!
+  mini_magick
   pry
   rack-test
   rake

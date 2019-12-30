@@ -1,7 +1,8 @@
 <svg
     width="160.2825mm"
     height="128.7094mm"
-    viewBox="0 0 160.2825 128.7094">
+    viewBox="0 0 160.2825 128.7094"
+    id="keyboard_svg">
     <g
         style="display:inline"
         id="cable_container"

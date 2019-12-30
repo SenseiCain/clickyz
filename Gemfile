@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'tux'
+gem 'mini_magick'
 
 group :test do
   gem 'rspec'

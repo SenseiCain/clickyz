@@ -97,6 +97,24 @@
         getAllKeyTops();
         getKeyboardCase();
         getKeyboardCable();
+
+        //Override default submit
+    $("#build_form").submit(function(e){
+        var svg = $("#keyboard_svg");
+        var svg_text = '<svg>' + svg.html() + '</svg>';
+
+        $.post('/builds',{
+            //name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"]
+
+            svg: svg_text,
+            keyboard_name: $('#keyboard_name').val(),
+            keycaps: $('#keycaps_color').val(),
+            case: $('#case_color').val(),
+            cable: $('#cable_color').val()
+
+        });
+
+      });
     });
 
     //Changes color of keys to set color
@@ -127,3 +145,5 @@
             $(e).css("stroke", color)
         });
     }
+
+    
