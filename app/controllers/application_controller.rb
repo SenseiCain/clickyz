@@ -46,8 +46,7 @@ class ApplicationController < Sinatra::Base
     if session[:user_id]
       
       @build = create_build(params)
-      convert_svg_to_jpg(params)
-      binding.pry
+      convert_svg_to_jpg(params, @build)
       redirect to '/builds'
     else
       session[:keyboard_data] = params
@@ -123,7 +122,7 @@ class ApplicationController < Sinatra::Base
       build
     end
 
-    def convert_svg_to_jpg(params)
+    def convert_svg_to_jpg(params, build)
       #generates svg as placeholder
       rand_num = rand(1000)
       filepath = "lib/keyboard_images/temp_svg_#{rand_num}.svg"
@@ -142,6 +141,9 @@ class ApplicationController < Sinatra::Base
 
       #delete placeholder svg
       File.delete(filepath)
+
+      #assign file to build
+      build.img_file = "keyboard_#{rand_num}.jpg";
     end
   end
 
