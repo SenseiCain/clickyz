@@ -1,9 +1,9 @@
     //Keyboard Components
-    var key_sides = [];
-    var key_tops = [];
+    var key_primary_sides = [];
+    var key_primary_tops = [];
+    //var key_alt_tops = [“#path743”, “#path566”, “#path299”, “#path5646”, “#path5445”, “#path5441”, “#path5437”, “#path5433”, “#path5429”, “#path5425”, “#path5421”, “#path5209”, “#path5200”, “#path5187”, “#path5169”, “#path5106”];
     var keyboard_case = [];
     var keyboard_cable = [];
-    var alt_key = [];
 
     $(document).ready(function(){
         
@@ -25,7 +25,7 @@
                     var array = [];
 
                     if ($(e).css("fill") == "rgb(255, 102, 0)") {
-                        array.push(e)
+                        array.push('#' + e.id)
                     }
                     return array
                 })
@@ -40,7 +40,9 @@
                 return array_flat;
             })
 
-            key_tops = all_tops;
+            key_primary_tops = all_tops;
+
+            console.log('key primary top: ' + key_primary_tops[1]);
         }
     
         function getAllKeySides(){
@@ -53,7 +55,7 @@
 
                     if ($(e).css("fill") == "rgb(212, 85, 0)") {
                         $(e).addClass("darker")
-                        array.push(e)
+                        array.push('#' + e.id)
                     }
                     return array
                 })
@@ -68,15 +70,17 @@
                 return array_flat;
             })
 
-            key_sides = all_sides;
+            key_primary_sides = all_sides;
+
+            console.log('key primary side: ' + key_primary_sides[1]);
         }
 
         function getKeyboardCase(){
             var array = []
 
-            array.push($('#path4730')[0]);
-            array.push($('#path3903')[0]);
-            array.push($('#path3906')[0]);
+            array.push('#path4730');
+            array.push('#path3903');
+            array.push('#path3906');
 
             var array_flat =  $.map(
                 array, 
@@ -86,10 +90,16 @@
             );
 
             keyboard_case = array_flat;
+
+            console.log('key case: ' + keyboard_case[1]);
         }
 
         function getKeyboardCable(){
-            keyboard_cable = $("#cable_container #g1571").children();
+            keyboard_cable = $("#cable_container #g1571").children().map(function(){
+                return '#' + this.id;
+            });
+
+            console.log('key primary side: ' + keyboard_cable[1]);
         }
 
         //Defines Components On Load
@@ -112,17 +122,21 @@
             return true;
     
         });
+
+        
+
+        //$('#keycaps_color').mouseover(alert())
     });
 
     //Changes color of keys to set color
     function changeKeyColor(){
         var color = $('#keycaps_color').val();
 
-        $.each(key_tops, function(i, e){
+        $.each(key_primary_tops, function(i, e){
             $(e).css("fill", color)
         });
 
-        $.each(key_sides, function(i, e){
+        $.each(key_primary_sides, function(i, e){
             $(e).css("fill", color)
         });
     };
@@ -141,6 +155,6 @@
         $.each(keyboard_cable, function(i, e){
             $(e).css("stroke", color)
         });
+
     }
 
-    
