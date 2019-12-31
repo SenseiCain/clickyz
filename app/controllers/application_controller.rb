@@ -44,7 +44,6 @@ class ApplicationController < Sinatra::Base
   post "/builds" do
 
     if session[:user_id]
-      
       @build = create_build(params)
       convert_svg_to_jpg(params, @build)
       redirect to '/builds'
