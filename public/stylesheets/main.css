@@ -1,3 +1,14 @@
+html, body {
+  max-height: 100%;
+  width: 100%;
+  background-color: rgb(236, 236, 236) !important;
+}
+
+#content-container {
+  height: 100% !important;
+  background-color: rgb(243, 243, 243)
+}
+
 @media screen {
   /* --- Reset Styles --- */
   * {
@@ -6,14 +17,9 @@
     padding: 0;
   }
 
-  html, body {
-    height: 100%;
-    width: 100%;
-  }
-
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-color: red;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;

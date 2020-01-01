@@ -1,4 +1,4 @@
-<div class="container mt-4 col-10" id="builds_container">
+<div class="container py-5 col-10" id="builds_container">
 
     <style>
         .card-body-img {
@@ -12,7 +12,7 @@
         }
     </style>
 
-    <div class="accordian-container">
+    <div class="accordian-container" >
         <div id="accordion">
     
             <% @builds.map do |b| %>
@@ -30,7 +30,7 @@
                         <div id="<%= 'card_' + b.id.to_s %>" class="collapse" aria-labelledby="<%= 'heading_' + b.id.to_s %>" data-parent="#accordion">
                             <div class="card-body d-flex justify-content-between">
                                 <div class="card-body-info d-flex align-items-center">
-                                    <div class="card-body-img">
+                                    <div class="card-body-img mr-3">
                                         <img src="images/keyboard_saves/<%= b.img_file %>">
                                     </div>
                                     <ul class="my-0">
