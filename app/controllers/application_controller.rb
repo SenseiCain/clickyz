@@ -21,10 +21,6 @@ class ApplicationController < Sinatra::Base
   get "/builds" do
 
     if session[:user_id]
-      if !session[:keyboard_data].nil?
-          create_build(session[:keyboard_data])
-          session.delete(:keyboard_data)
-      end
 
       @builds = current_user.builds
       erb :builds
@@ -45,9 +41,10 @@ class ApplicationController < Sinatra::Base
 
   post "/builds" do
 
+
     if session[:user_id]
       @build = create_build(params)
-      convert_svg_to_jpg(params, @build)
+      #convert_svg_to_jpg(params, @build)
       redirect to '/builds'
     else
       session[:keyboard_data] = params
@@ -117,7 +114,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def create_build(params)
-      build = Build.create(name: params["keyboard_name"], keycaps: params["keycaps"], case: params["case"], cable: params["cable"])
+      build = Build.create(name: params["keyboard_name"], case: params["case"], cable: params["cable"], primary_color: params["keycaps_primary"], alt_color: params["keycaps_alt"])
       build.user = current_user
       build.save
       build

@@ -16,6 +16,7 @@
         <div id="accordion">
     
             <% @builds.map do |b| %>
+                
 
                     <div class="card">
                         <div class="card-header" id="<%= 'heading_' + b.id.to_s %>">
@@ -34,7 +35,8 @@
                                     </div>
                                     <ul class="my-0">
                                         <li>Case: <%= b.case %></li>
-                                        <li>Keycaps: <%= b.keycaps %></li>
+                                        <li>Primary Color: <%= b.primary_color %></li>
+                                        <li>Alt Color: <%= b.alt_color %></li>
                                         <li>Cable: <%= b.cable %></li>
                                     </ul>
                                 </div>
