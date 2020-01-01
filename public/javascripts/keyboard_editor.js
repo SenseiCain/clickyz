@@ -8,6 +8,7 @@
 
     $(document).ready(function(){
 
+        //Defines Components On Load
         function findKeyboardComponents(){
 
             //KEYCAPS
@@ -39,14 +40,13 @@
             
         }
 
-        //Defines Components On Load
         findKeyboardComponents();
 
         //Adds keyboard data to submit form
         $("#build_form").submit(function(e){
             var svg = $("#keyboard_svg");
 
-            var svg_text = '<svg>' + svg.html() + '</svg>';
+            var svg_text = svg.html();
     
             $('<input>').attr({
                 type: 'hidden',

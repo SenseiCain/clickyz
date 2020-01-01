@@ -41,10 +41,9 @@ class ApplicationController < Sinatra::Base
 
   post "/builds" do
 
-
     if session[:user_id]
       @build = create_build(params)
-      #convert_svg_to_jpg(params, @build)
+      convert_svg_to_jpg(params, @build)
       redirect to '/builds'
     else
       redirect to '/login'
@@ -111,7 +110,7 @@ class ApplicationController < Sinatra::Base
       rand_num = rand(1000)
       filepath = "lib/temp_svgs/temp_svg_#{rand_num}.svg"
       temp_file = File.open(filepath, "w")  do |f| 
-        text_2 = params[:svg]
+        text_2 = params[:svg] + '</svg>'
         text_2.slice! "<svg>"
 
         f.write(File.open('lib/svgs/metadata.txt', 'r').read)
