@@ -55,7 +55,6 @@
             }).appendTo('#build_form');
     
             return true;
-    
         });
 
     });
@@ -101,4 +100,3 @@
         });
 
     }
-

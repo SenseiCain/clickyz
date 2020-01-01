@@ -1,7 +1,6 @@
 Minimum todos before I submit project
-1. Accent key options
-2. Change svg to display same as input options onLoad
-3. Edit functionality
+1. Change svg to display same as input options onLoad
+2. Edit functionality
 
 Extra goodies
 1. Save svg as cookie while login redirect (too large for session)

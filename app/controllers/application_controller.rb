@@ -21,7 +21,6 @@ class ApplicationController < Sinatra::Base
   get "/builds" do
 
     if session[:user_id]
-
       @builds = current_user.builds
       erb :builds
     else
