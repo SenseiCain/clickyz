@@ -40,7 +40,12 @@
             
         }
 
+        //Sets keyboard Vars & SVG onLoad
         findKeyboardComponents();
+        changeKeyPrimaryColor();
+        changeKeyAltColor();
+        changeCaseColor();
+        changeCableColor();
 
         //Adds keyboard data to submit form
         $("#build_form").submit(function(e){
@@ -70,6 +75,8 @@
         $.each(keycaps_primary_sides, function(i, e){
             $(e).css("fill", color)
         });
+
+        console.log('test')
     };
 
     function changeKeyAltColor(){
