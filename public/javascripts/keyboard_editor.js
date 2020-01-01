@@ -8,8 +8,9 @@
 
     $(document).ready(function(){
 
-        function findKeys(){
+        function findKeyboardComponents(){
 
+            //KEYCAPS
             $("#group_keycaps_primary_tops").children().each(function(i, e){
                 keycaps_primary_tops.push('#' + e.id)
             });
@@ -25,13 +26,23 @@
             $("#group_keycaps_alt_sides").children().each(function(i, e){
                 keycaps_alt_sides.push('#' + e.id)
             });
-            
 
+            //CASE
+            $("#group_case").children().each(function(i, e){
+                keyboard_case.push('#' + e.id)
+            });
+
+            //CABLE
+            $("#group_cable").children().each(function(i, e){
+                keyboard_cable.push('#' + e.id)
+            });
+            
         }
 
         //Defines Components On Load
-        findKeys();
+        findKeyboardComponents();
 
+        //Adds keyboard data to submit form
         $("#build_form").submit(function(e){
             var svg = $("#keyboard_svg");
 
@@ -47,20 +58,29 @@
     
         });
 
-        
-
-        //$('#keycaps_color').mouseover(alert())
     });
 
-    //Changes color of keys to set color
-    function changeKeyColor(){
-        var color = $('#keycaps_color').val();
+    //Change color of SVG components
+    function changeKeyPrimaryColor(){
+        var color = $('#keycaps_primary_color').val();
 
         $.each($(keycaps_primary_tops), function(i, e){
             $(e).css("fill", color)
         });
 
         $.each(keycaps_primary_sides, function(i, e){
+            $(e).css("fill", color)
+        });
+    };
+
+    function changeKeyAltColor(){
+        var color = $('#keycaps_alt_color').val();
+
+        $.each($(keycaps_alt_tops), function(i, e){
+            $(e).css("fill", color)
+        });
+
+        $.each(keycaps_alt_sides, function(i, e){
             $(e).css("fill", color)
         });
     };
