@@ -1,0 +1,55 @@
+<script src="javascripts/keyboard_editor.js"></script>
+<script src="javascripts/update_selection.js"></script>
+<link rel="stylesheet" href="stylesheets/editor.css">
+
+<div id="svg_container" class="row justify-content-between mt-5">
+    <div class="col-6 text-left">
+        <%= File.read('./public/images/keyboard_v2.svg') %>
+    </div>
+    <div class="col-3 bg-light text-right">
+        <form id="build_form" style="height: 100%" action="/builds" method="POST">
+            <div style="height: 100%" class="d-flex flex-column justify-content-between" id="form-inner">
+                <div class="d-flex flex-column align-items-start" id="input-group">
+                    <div class="pt-2 mt-0">
+                        <label class="px-2" for="keyboard_name">Name</label>
+                        <input type="text" id="keyboard_name" name="keyboard_name"><br>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <label class="px-2" for="keycaps_primary_color">Primary</label>
+                        <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
+                            <%= ViewHelpers.generate_options_for_edit(@build.primary_color, "primary") %>
+                        </select><br>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="px-2" for="keycaps_alt_color">Alt</label>
+                        <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
+                            <%= ViewHelpers.generate_options_for_edit(@build.alt_color, "alt") %>
+                        </select><br>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="px-2" for="case_color">Case</label>
+                        <select name="case" id="case_color" onchange="changeCaseColor()">
+                            <%= ViewHelpers.generate_options_for_edit(@build.case, "case") %>
+                        </select><br>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="px-2" for="cable_color">Cable</label>
+                        <select name="cable" id="cable_color" onchange="changeCableColor()">
+                            <%= ViewHelpers.generate_options_for_edit(@build.cable, "cable") %>
+                        </select><br>
+                    </div>
+                </div>
+
+                <div class="d-flex mx-auto mb-2">
+                    <input id="submit_btn" class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </div>
+
+        </form>
+    <div>
+<div>
+

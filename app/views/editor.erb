@@ -18,28 +18,28 @@
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_primary_color">Primary</label>
                             <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
-                                <%= ViewHelpers.generate_options(params, "primary") %>
+                                <%= ViewHelpers.generate_options("primary") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_alt_color">Alt</label>
                             <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
-                                <%= ViewHelpers.generate_options(params, "alt") %>
+                                <%= ViewHelpers.generate_options("alt") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="case_color">Case</label>
                             <select name="case" id="case_color" onchange="changeCaseColor()">
-                                <%= ViewHelpers.generate_options(params, "case") %>
+                                <%= ViewHelpers.generate_options("case") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="cable_color">Cable</label>
                             <select name="cable" id="cable_color" onchange="changeCableColor()">
-                                <%= ViewHelpers.generate_options(params, "cable") %>
+                                <%= ViewHelpers.generate_options("cable") %>
                             </select><br>
                         </div>
                     </div>

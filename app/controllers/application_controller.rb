@@ -53,7 +53,7 @@ class ApplicationController < Sinatra::Base
   get "/edit" do
     @build = getBuild(params)
     #binding.pry
-    erb :editor
+    erb :edit_build
   end
 
   get "/information" do

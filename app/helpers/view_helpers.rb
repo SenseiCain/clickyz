@@ -38,7 +38,7 @@ class ViewHelpers
         end.join(" ")
     end
 
-    def self.generate_options(params, selection_type)
+    def self.generate_options(selection_type)
         options = {
             "primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
             "alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
@@ -49,9 +49,29 @@ class ViewHelpers
         html_options = []
 
         options[selection_type].each do |o|
+            #current_user ||= User.find(session[:user_id]) if session[:user_id]
             html_options.push("<option value='#{o}'>#{o}</option>")
         end
 
         html_options.join('')
+    end
+
+    def self.generate_options_for_edit(build_atr, selection_type)
+        options = {
+            "primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "case" => ["SlateGrey", "GoldenRod", "AliceBlue", "Green", "BurlyWood", "Coral", "DarkCyan", "DarkOliveGreen", "DarkOrchid", "GoldenRod", "HotPink", "LightSeaGreen", "Salmon", "Orange"],
+            "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
+        }
+
+        html_options = []
+
+        options[selection_type].each do |o|
+            #current_user ||= User.find(session[:user_id]) if session[:user_id]
+            html_options.push("<option #{build_atr == o ? 'selected' : ''} value='#{o}'>#{o}</option>")
+        end
+
+        html_options.join('')
+
     end
 end
