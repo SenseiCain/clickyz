@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191230230847) do
+ActiveRecord::Schema.define(version: 20200101055638) do
 
   create_table "builds", force: :cascade do |t|
     t.string  "name"
     t.string  "case"
-    t.string  "keycaps"
     t.string  "cable"
     t.integer "user_id"
     t.string  "img_file"
+    t.string  "primary_color"
+    t.string  "alt_color"
   end
 
   create_table "users", force: :cascade do |t|
