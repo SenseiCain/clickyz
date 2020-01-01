@@ -1,7 +1,7 @@
     //Keyboard Components
     var key_primary_sides = [];
     var key_primary_tops = [];
-    //var key_alt_tops = [“#path743”, “#path566”, “#path299”, “#path5646”, “#path5445”, “#path5441”, “#path5437”, “#path5433”, “#path5429”, “#path5425”, “#path5421”, “#path5209”, “#path5200”, “#path5187”, “#path5169”, “#path5106”];
+    var key_alt_tops = ['#path743', '#path566', '#path299', '#path5646', '#path5445', '#path5441', '#path5437', '#path5433', '#path5429', '#path5425', '#path5421', '#path5209', '#path5200', '#path5187', '#path5169', '#path5106'];
     var keyboard_case = [];
     var keyboard_cable = [];
 
@@ -40,7 +40,11 @@
                 return array_flat;
             })
 
-            key_primary_tops = all_tops;
+
+            //The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+            //True = el not included in the key_alt array
+
+            key_primary_tops = all_tops
 
             console.log('key primary top: ' + key_primary_tops[1]);
         }
@@ -132,7 +136,7 @@
     function changeKeyColor(){
         var color = $('#keycaps_color').val();
 
-        $.each(key_primary_tops, function(i, e){
+        $.each($(key_primary_tops), function(i, e){
             $(e).css("fill", color)
         });
 
