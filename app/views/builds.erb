@@ -41,7 +41,12 @@
                                     </ul>
                                 </div>
                                 <div class="card-options d-flex align-items-end">
-                                    <button type="button" class="btn btn-primary mx-1">Edit</button>
+                                    
+                                    <form action="/edit" method="GET">
+                                        <input id="hidden" type="hidden" name="build_id" value="<%= b.id %>">
+                                        <button type="submit" class="btn btn-primary mx-1">Edit</button>
+                                    </form>
+
                                     <form action="/builds/<%= b.id %>" method="POST">
                                         <input id="hidden" type="hidden" name="_method" value="DELETE">
                                         <input class="btn btn-danger mx-1" type="submit" value="delete">

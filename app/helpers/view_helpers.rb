@@ -37,4 +37,21 @@ class ViewHelpers
             end
         end.join(" ")
     end
+
+    def self.generate_options(params, selection_type)
+        options = {
+            "primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "case" => ["SlateGrey", "GoldenRod", "AliceBlue", "Green", "BurlyWood", "Coral", "DarkCyan", "DarkOliveGreen", "DarkOrchid", "GoldenRod", "HotPink", "LightSeaGreen", "Salmon", "Orange"],
+            "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
+        }
+
+        html_options = []
+
+        options[selection_type].each do |o|
+            html_options.push("<option value='#{o}'>#{o}</option>")
+        end
+
+        html_options.join('')
+    end
 end

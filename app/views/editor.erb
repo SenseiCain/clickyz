@@ -1,4 +1,5 @@
     <script src="javascripts/keyboard_editor.js"></script>
+    <script src="javascripts/update_selection.js"></script>
     <link rel="stylesheet" href="stylesheets/editor.css">
 
     <div id="svg_container" class="row justify-content-between mt-5">
@@ -17,64 +18,28 @@
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_primary_color">Primary</label>
                             <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
-                                <option value="AntiqueWhite">Antique White</option>
-                                <option value="Lime">Lime</option>
-                                <option value="Magenta">Magenta</option>
-                                <option value="Orange">Orange</option>
-                                <option value="Orchid">Orchid</option>
-                                <option value="PowderBlue">Powder Blue</option>
-                                <option value="Turquoise">Turquoise</option>
-                                <option value="OrangeRed">Orange Red</option>
-                                <option value="Crimson">Crimson</option>
+                                <%= ViewHelpers.generate_options(params, "primary") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_alt_color">Alt</label>
                             <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
-                                <option value="AntiqueWhite">Antique White</option>
-                                <option value="Lime">Lime</option>
-                                <option value="Magenta">Magenta</option>
-                                <option value="Orange">Orange</option>
-                                <option value="Orchid">Orchid</option>
-                                <option value="PowderBlue">Powder Blue</option>
-                                <option value="Turquoise">Turquoise</option>
-                                <option value="OrangeRed">Orange Red</option>
-                                <option value="Crimson">Crimson</option>
+                                <%= ViewHelpers.generate_options(params, "alt") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="case_color">Case</label>
                             <select name="case" id="case_color" onchange="changeCaseColor()">
-                                <option value="GoldenRod">Golden Rod</option>
-                                <option value="AliceBlue">AliceBlue</option>
-                                <option value="Green">Green</option>
-                                <option value="BurlyWood">Burly Wood</option>
-                                <option value="Coral">Coral</option>
-                                <option value="DarkCyan">Dark Cyan</option>
-                                <option value="DarkOliveGreen">DarkOliveGreen</option>
-                                <option value="DarkOrchid">Dark Orchid</option>
-                                <option value="GoldenRod">GoldenRod</option>
-                                <option value="HotPink">Hot Pink</option>
-                                <option value="LightSeaGreen">Light Sea Green</option>
-                                <option value="Salmon">Salmon</option>
-                                <option value="Orange">Orange</option>
-                                <option value="SlateGrey">Slate Grey</option>
+                                <%= ViewHelpers.generate_options(params, "case") %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="cable_color">Cable</label>
                             <select name="cable" id="cable_color" onchange="changeCableColor()">
-                                <option value="AliceBlue">AliceBlue</option>
-                                <option value="Crimson">Crimson</option>
-                                <option value="HotPink">Hot Pink</option>
-                                <option value="GoldenRod">GoldenRod</option>
-                                <option value="Crimson">Crimson</option>
-                                <option value="Orange">Orange</option>
-                                <option value="LightSeaGreen">Light Sea Green</option>
-                                <option value="Lime">Lime</option>
+                                <%= ViewHelpers.generate_options(params, "cable") %>
                             </select><br>
                         </div>
                     </div>

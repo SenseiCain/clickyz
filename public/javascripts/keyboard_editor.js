@@ -47,6 +47,9 @@
         changeCaseColor();
         changeCableColor();
 
+        //Find params
+        //console.log(window.location.search.substr(1))
+
         //Adds keyboard data to submit form
         $("#build_form").submit(function(e){
             var svg = $("#keyboard_svg");
@@ -75,8 +78,6 @@
         $.each(keycaps_primary_sides, function(i, e){
             $(e).css("fill", color)
         });
-
-        console.log('test')
     };
 
     function changeKeyAltColor(){

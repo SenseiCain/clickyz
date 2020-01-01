@@ -50,6 +50,12 @@ class ApplicationController < Sinatra::Base
     
   end
 
+  get "/edit" do
+    @build = getBuild(params)
+    #binding.pry
+    erb :editor
+  end
+
   get "/information" do
     #RESTful pages that show info on cases/switches/keycaps
     erb :information
@@ -95,6 +101,11 @@ class ApplicationController < Sinatra::Base
 
     def register(params)
       User.create(username: params["username"], email: params["email"], password: params["password"])
+    end
+
+    def getBuild(params)
+      build = Build.find(params[:build_id])
+      build
     end
 
     def create_build(params)

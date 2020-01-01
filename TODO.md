@@ -1,6 +1,6 @@
 Minimum todos before I submit project
-1. Change svg to display same as input options onLoad
-2. Edit functionality
+1. Edit functionality
+2. Random keyboard on refresh
 
 Extra goodies
 1. Save svg as cookie while login redirect (too large for session)
