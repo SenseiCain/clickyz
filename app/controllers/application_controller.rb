@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
   delete "/builds/:id" do
     if session[:user_id] && current_user.builds.include?(Build.find(params[:id]))
       build = Build.find(params[:id])
-      #File.delete('public/images/keyboard_saves/' + build.img_file.to_s)
+      File.delete('public/images/keyboard_saves/' + build.img_file.to_s)
       build.delete
     end
 
