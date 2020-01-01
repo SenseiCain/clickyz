@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
   delete "/builds/:id" do
     if session[:user_id] && current_user.builds.include?(Build.find(params[:id]))
       build = Build.find(params[:id])
-      File.delete('public/images/keyboard_saves/' + build.img_file.to_s)
+      #File.delete('public/images/keyboard_saves/' + build.img_file.to_s)
       build.delete
     end
 
@@ -47,7 +47,6 @@ class ApplicationController < Sinatra::Base
       #convert_svg_to_jpg(params, @build)
       redirect to '/builds'
     else
-      session[:keyboard_data] = params
       redirect to '/login'
     end
     
@@ -66,30 +65,17 @@ class ApplicationController < Sinatra::Base
     @user = register(params)
     session[:user_id] = @user.id
 
-    if session[:keyboard_data]
-      redirect to "/builds"
-    else
-      redirect to "/"
-    end
+    redirect to "/"
   end
 
   post "/sessions" do
     user = User.find_by(:email => params["email"])
 
-    if session[:keyboard_data]
-      if user && user.authenticate(params["password"])
-        session[:user_id] = user.id
-        redirect to "/builds"
-      else
-        redirect to "/login"
-      end
+    if user && user.authenticate(params["password"])
+      session[:user_id] = user.id
+      redirect to "/"
     else
-      if user && user.authenticate(params["password"])
-        session[:user_id] = user.id
-        redirect to "/"
-      else
-        redirect to "/login"
-      end
+      redirect to "/login"
     end
 
   end
