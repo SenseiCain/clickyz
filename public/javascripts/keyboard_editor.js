@@ -1,116 +1,36 @@
     //Keyboard Components
-    var key_primary_sides = [];
-    var key_primary_tops = [];
-    var key_alt_tops = ['#path743', '#path566', '#path299', '#path5646', '#path5445', '#path5441', '#path5437', '#path5433', '#path5429', '#path5425', '#path5421', '#path5209', '#path5200', '#path5187', '#path5169', '#path5106'];
+    var keycaps_primary_tops = [];
+    var keycaps_primary_sides = [];
+    var keycaps_alt_tops = [];
+    var keycaps_alt_sides = [];
     var keyboard_case = [];
     var keyboard_cable = [];
 
     $(document).ready(function(){
-        
-        function getAllKeys(){
-            var all_rows = $("#keys_container").children();
-            var all_keys = all_rows.map(function(i, e){
-                return $(e).children()
+
+        function findKeys(){
+
+            $("#group_keycaps_primary_tops").children().each(function(i, e){
+                keycaps_primary_tops.push('#' + e.id)
             });
 
-            return all_keys;
-        }
-
-        function getAllKeyTops(){
-            var all_keys = getAllKeys();
-
-            var all_tops = all_keys.map(function(i, e){
-                var array = e.map(function(i, e){
-                    //ff6600
-                    var array = [];
-
-                    if ($(e).css("fill") == "rgb(255, 102, 0)") {
-                        array.push('#' + e.id)
-                    }
-                    return array
-                })
-
-                var array_flat =  $.map(
-                    array, 
-                    function(n){
-                        return n;
-                    }
-                );
-                
-                return array_flat;
-            })
-
-
-            //The filter() method creates a new array with all elements that pass the test implemented by the provided function.
-            //True = el not included in the key_alt array
-
-            key_primary_tops = all_tops
-
-            console.log('key primary top: ' + key_primary_tops[1]);
-        }
-    
-        function getAllKeySides(){
-            var all_keys = getAllKeys();
-
-            var all_sides = all_keys.map(function(i, e){
-                var array = e.map(function(i, e){
-                    //ff6600
-                    var array = [];
-
-                    if ($(e).css("fill") == "rgb(212, 85, 0)") {
-                        $(e).addClass("darker")
-                        array.push('#' + e.id)
-                    }
-                    return array
-                })
-
-                var array_flat =  $.map(
-                    array, 
-                    function(n){
-                        return n;
-                    }
-                );
-                
-                return array_flat;
-            })
-
-            key_primary_sides = all_sides;
-
-            console.log('key primary side: ' + key_primary_sides[1]);
-        }
-
-        function getKeyboardCase(){
-            var array = []
-
-            array.push('#path4730');
-            array.push('#path3903');
-            array.push('#path3906');
-
-            var array_flat =  $.map(
-                array, 
-                function(n){
-                    return n;
-                }
-            );
-
-            keyboard_case = array_flat;
-
-            console.log('key case: ' + keyboard_case[1]);
-        }
-
-        function getKeyboardCable(){
-            keyboard_cable = $("#cable_container #g1571").children().map(function(){
-                return '#' + this.id;
+            $("#group_keycaps_primary_sides").children().each(function(i, e){
+                keycaps_primary_sides.push('#' + e.id)
             });
 
-            console.log('key primary side: ' + keyboard_cable[1]);
+            $("#group_keycaps_alt_tops").children().each(function(i, e){
+                keycaps_alt_tops.push('#' + e.id)
+            });
+
+            $("#group_keycaps_alt_sides").children().each(function(i, e){
+                keycaps_alt_sides.push('#' + e.id)
+            });
+            
+
         }
 
         //Defines Components On Load
-        getAllKeySides();
-        getAllKeyTops();
-        getKeyboardCase();
-        getKeyboardCable();
+        findKeys();
 
         $("#build_form").submit(function(e){
             var svg = $("#keyboard_svg");
@@ -136,11 +56,11 @@
     function changeKeyColor(){
         var color = $('#keycaps_color').val();
 
-        $.each($(key_primary_tops), function(i, e){
+        $.each($(keycaps_primary_tops), function(i, e){
             $(e).css("fill", color)
         });
 
-        $.each(key_primary_sides, function(i, e){
+        $.each(keycaps_primary_sides, function(i, e){
             $(e).css("fill", color)
         });
     };
