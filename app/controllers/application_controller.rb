@@ -30,8 +30,6 @@ class ApplicationController < Sinatra::Base
 
   patch "/builds/:id" do
 
-    puts params[:keyboard_name]
-
     #update obj
     build = Build.find(params[:id])
     build.name = params[:keyboard_name]
@@ -42,7 +40,7 @@ class ApplicationController < Sinatra::Base
 
     #update image
     delete_jpg(build)
-    build.img_file = ''
+    convert_svg_to_jpg(params, build)
 
     build.save
 
