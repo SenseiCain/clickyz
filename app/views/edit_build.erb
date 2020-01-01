@@ -7,12 +7,14 @@
         <%= File.read('./public/images/keyboard_v2.svg') %>
     </div>
     <div class="col-3 bg-light text-right">
-        <form id="build_form" style="height: 100%" action="/builds" method="POST">
+        <form id="build_form" style="height: 100%" action="/builds/<%= @build.id %>" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="PATCH">
+
             <div style="height: 100%" class="d-flex flex-column justify-content-between" id="form-inner">
                 <div class="d-flex flex-column align-items-start" id="input-group">
                     <div class="pt-2 mt-0">
                         <label class="px-2" for="keyboard_name">Name</label>
-                        <input type="text" id="keyboard_name" name="keyboard_name" value=<%= @build.name %>><br>
+                        <input type="text" id="keyboard_name" name="keyboard_name" value="<%= @build.name.to_s %>""><br>
                     </div>
                     
                     <div class="pt-2">
@@ -45,7 +47,7 @@
                 </div>
 
                 <div class="d-flex mx-auto mb-2">
-                    <input id="submit_btn" class="btn btn-primary" type="submit" value="Submit">
+                    <input id="submit_btn" class="btn btn-primary" type="submit" value="Update">
                 </div>
             </div>
 

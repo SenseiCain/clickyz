@@ -28,6 +28,21 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  patch "/builds/:id" do
+
+    puts params[:keyboard_name]
+
+    build = Build.find(params[:id])
+    build.name = params[:keyboard_name]
+    build.primary_color = params[:keycaps_primary]
+    build.alt_color = params[:keycaps_alt]
+    build.case = params[:case]
+    build.cable = params[:cable]
+    build.save
+
+    redirect to '/builds'
+  end
+
   delete "/builds/:id" do
     if session[:user_id] && current_user.builds.include?(Build.find(params[:id]))
       build = Build.find(params[:id])
