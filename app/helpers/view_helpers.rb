@@ -46,11 +46,11 @@ class ViewHelpers
             "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
         }
 
+        options_rand = rand(0...options[selection_type].length)
         html_options = []
 
-        options[selection_type].each do |o|
-            #current_user ||= User.find(session[:user_id]) if session[:user_id]
-            html_options.push("<option value='#{o}'>#{o}</option>")
+        options[selection_type].each_with_index do |o, i|
+            html_options.push("<option #{options[selection_type].index(o) == options_rand ? 'selected' : ''} value='#{o}'>#{o}</option>")
         end
 
         html_options.join('')
@@ -67,7 +67,6 @@ class ViewHelpers
         html_options = []
 
         options[selection_type].each do |o|
-            #current_user ||= User.find(session[:user_id]) if session[:user_id]
             html_options.push("<option #{build_atr == o ? 'selected' : ''} value='#{o}'>#{o}</option>")
         end
 
