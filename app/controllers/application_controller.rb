@@ -73,7 +73,12 @@ class ApplicationController < Sinatra::Base
 
   get "/edit" do
     @build = getBuild(params)
-    erb :edit_build
+
+    if current_user.builds.include?(@build)
+      erb :edit_build
+    else
+      redirect to '/'
+    end
   end
 
   get "/information" do
