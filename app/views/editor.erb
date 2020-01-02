@@ -12,34 +12,34 @@
                     <div class="d-flex flex-column align-items-start" id="input-group">
                         <div class="pt-2 mt-0">
                             <label class="px-2" for="keyboard_name">Name</label>
-                            <input type="text" id="keyboard_name" name="keyboard_name"><br>
+                            <input type="text" id="keyboard_name" name="keyboard_name" value="<%= session[:keyboard_data] ? session[:keyboard_data][:keyboard_name].to_s : '' %>"><br>
                         </div>
                         
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_primary_color">Primary</label>
                             <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
-                                <%= ViewHelpers.generate_options("primary") %>
+                                <%= ViewHelpers.generate_options("keycaps_primary", session) %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_alt_color">Alt</label>
                             <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
-                                <%= ViewHelpers.generate_options("alt") %>
+                                <%= ViewHelpers.generate_options("keycaps_alt", session) %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="case_color">Case</label>
                             <select name="case" id="case_color" onchange="changeCaseColor()">
-                                <%= ViewHelpers.generate_options("case") %>
+                                <%= ViewHelpers.generate_options("case", session) %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="cable_color">Cable</label>
                             <select name="cable" id="cable_color" onchange="changeCableColor()">
-                                <%= ViewHelpers.generate_options("cable") %>
+                                <%= ViewHelpers.generate_options("cable", session) %>
                             </select><br>
                         </div>
                     </div>

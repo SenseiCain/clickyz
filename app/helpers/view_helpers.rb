@@ -38,10 +38,10 @@ class ViewHelpers
         end.join(" ")
     end
 
-    def self.generate_options(selection_type)
+    def self.generate_options(selection_type, session)
         options = {
-            "primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
-            "alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "keycaps_primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
+            "keycaps_alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
             "case" => ["SlateGrey", "GoldenRod", "AliceBlue", "Green", "BurlyWood", "Coral", "DarkCyan", "DarkOliveGreen", "DarkOrchid", "GoldenRod", "HotPink", "LightSeaGreen", "Salmon", "Orange"],
             "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
         }
@@ -49,8 +49,14 @@ class ViewHelpers
         options_rand = rand(0...options[selection_type].length)
         html_options = []
 
-        options[selection_type].each_with_index do |o, i|
-            html_options.push("<option #{options[selection_type].index(o) == options_rand ? 'selected' : ''} value='#{o}'>#{o}</option>")
+        if session[:keyboard_data]
+            options[selection_type].each_with_index do |o, i|
+                html_options.push("<option #{session[:keyboard_data][selection_type] == o ? 'selected' : ''} value='#{o}'>#{o}</option>")
+            end
+        else
+            options[selection_type].each_with_index do |o, i|
+                html_options.push("<option #{options[selection_type].index(o) == options_rand ? 'selected' : ''} value='#{o}'>#{o}</option>")
+            end
         end
 
         html_options.join('')

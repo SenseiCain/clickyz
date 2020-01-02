@@ -62,8 +62,10 @@ class ApplicationController < Sinatra::Base
     if session[:user_id]
       @build = create_build(params)
       convert_svg_to_jpg(params, @build)
+      session.delete(:keyboard_data)
       redirect to '/builds'
     else
+      session[:keyboard_data] = params.except("svg")
       redirect to '/login'
     end
     
@@ -71,7 +73,6 @@ class ApplicationController < Sinatra::Base
 
   get "/edit" do
     @build = getBuild(params)
-    #binding.pry
     erb :edit_build
   end
 
