@@ -91,6 +91,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/register" do
+
     @user = register(params)
     session[:user_id] = @user.id
 
