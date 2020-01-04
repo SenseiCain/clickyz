@@ -1,9 +1,9 @@
 Minimum todos before I submit project
-1. Edit functionality
-2. Random keyboard on refresh
+1. Make login look nicer
+2. Add cool color options
 
 Extra goodies
-1. Save svg as cookie while login redirect (too large for session)
+1. Host it
 2. Add information tabs
 3. Add product links & price
 4. Build price

@@ -20,14 +20,14 @@
                     <div class="pt-2">
                         <label class="px-2" for="keycaps_primary_color">Primary</label>
                         <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
-                            <%= ViewHelpers.generate_options_for_edit(@build.primary_color, "primary") %>
+                            <%= ViewHelpers.generate_options_for_edit(@build.primary_color, "keycaps_primary") %>
                         </select><br>
                     </div>
 
                     <div class="pt-2">
                         <label class="px-2" for="keycaps_alt_color">Alt</label>
                         <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
-                            <%= ViewHelpers.generate_options_for_edit(@build.alt_color, "alt") %>
+                            <%= ViewHelpers.generate_options_for_edit(@build.alt_color, "keycaps_alt") %>
                         </select><br>
                     </div>
 

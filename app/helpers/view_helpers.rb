@@ -40,10 +40,10 @@ class ViewHelpers
 
     def self.generate_options(selection_type, session)
         options = {
-            "keycaps_primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
-            "keycaps_alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
-            "case" => ["SlateGrey", "GoldenRod", "AliceBlue", "Green", "BurlyWood", "Coral", "DarkCyan", "DarkOliveGreen", "DarkOrchid", "GoldenRod", "HotPink", "LightSeaGreen", "Salmon", "Orange"],
-            "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
+            "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
+            "keycaps_alt" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
+            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"],
+            "cable" => ["Crimson", "Orange", "Navy", "Orchid", "HotPink", "Lime", "Cyan", "Gold"]
         }
 
         options_rand = rand(0...options[selection_type].length)
@@ -64,10 +64,10 @@ class ViewHelpers
 
     def self.generate_options_for_edit(build_atr, selection_type)
         options = {
-            "primary" => ["AntiqueWhite", "Orange", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
-            "alt" => ["Orange", "AntiqueWhite", "Lime", "Magenta", "Orchid", "PowderBlue", "Turquoise", "OrangeRed", "Crimson"],
-            "case" => ["SlateGrey", "GoldenRod", "AliceBlue", "Green", "BurlyWood", "Coral", "DarkCyan", "DarkOliveGreen", "DarkOrchid", "GoldenRod", "HotPink", "LightSeaGreen", "Salmon", "Orange"],
-            "cable" => ["Crimson", "Orange", "AliceBlue", "HotPink", "GoldenRod", "Crimson", "LightSeaGreen"]
+            "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
+            "keycaps_alt" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
+            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"],
+            "cable" => ["Crimson", "Orange", "Navy", "Orchid", "HotPink", "Lime", "Cyan", "Gold"]
         }
 
         html_options = []
