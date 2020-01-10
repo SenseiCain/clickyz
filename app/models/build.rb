@@ -5,12 +5,37 @@ class Build < ActiveRecord::Base
         build = Build.create(name: params["keyboard_name"], case: params["case"], cable: params["cable"], primary_color: params["keycaps_primary"], alt_color: params["keycaps_alt"])
         build.user = user
 
-        convert_svg_to_jpg(params, build)
+        build.convert_svg_to_jpg(params)
+
+        build.save
+    end
+
+    def update_with_jpg(params)
+        #Update attrs
+        self.name = params[:keyboard_name]
+        self.primary_color = params[:keycaps_primary]
+        self.alt_color = params[:keycaps_alt]
+        self.case = params[:case]
+        self.cable = params[:cable]
+
+        #Update Image
+        convert_svg_to_jpg(params)
+
+        self.save
+    end
+
+    def delete_with_jpg
+        delete_jpg
+        self.delete
     end
 
     private
 
-    def self.convert_svg_to_jpg(params, build)
+    def delete_jpg
+        File.delete("public/images/keyboard_saves/#{self.img_file}")
+    end
+
+    def convert_svg_to_jpg(params)
         #generates svg as placeholder
         rand_num = rand(1000)
         filepath = "lib/temp_svgs/temp_svg_#{rand_num}.svg"
@@ -28,14 +53,9 @@ class Build < ActiveRecord::Base
         image.write "public/images/keyboard_saves/keyboard_#{rand_num}.jpg"
     
         #delete placeholder svg
-        File.delete(filepath)
+        delete_jpg
     
         #assign file to build
-        build.img_file = "keyboard_#{rand_num}.jpg"
-        build.save
-    end
-
-    def delete_jpg(build)
-        File.delete("public/images/keyboard_saves/#{build.img_file}")
+        self.img_file = "keyboard_#{rand_num}.jpg"
     end
 end

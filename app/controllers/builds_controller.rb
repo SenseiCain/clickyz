@@ -18,7 +18,6 @@ class BuildController < ApplicationController
 
     post "/builds" do
         if session[:user_id]
-            #Move to Build Model - Create Build
             Build.create_with_jpg(params, current_user)
             session.delete(:keyboard_data)
 
@@ -31,21 +30,8 @@ class BuildController < ApplicationController
 
     patch "/builds/:id" do
         build = getBuild(params)
-
         redirect_if_not_authorized(build)
-
-        #Move to Build Model
-        build.name = params[:keyboard_name]
-        build.primary_color = params[:keycaps_primary]
-        build.alt_color = params[:keycaps_alt]
-        build.case = params[:case]
-        build.cable = params[:cable]
-
-        #Update Image
-        delete_jpg(build)
-        convert_svg_to_jpg(params, build)
-
-        build.save
+        build.update_with_jpg(params)
 
         redirect to '/builds'
     end
@@ -55,17 +41,12 @@ class BuildController < ApplicationController
 
         redirect_if_not_authorized(build)
 
-        #Move to Build Model
-        delete_jpg(build)
-        build.delete
+        build.delete_with_jpg
 
         redirect to '/builds'
     end
 
-    
-
     helpers do
-        #Necessary
         def current_user
             current_user ||= User.find(session[:user_id]) if session[:user_id]
         end
@@ -80,11 +61,5 @@ class BuildController < ApplicationController
               redirect to '/builds'
             end
         end
-
-        #Move these to Build Model
-        
-    
-        
-
     end
 end
