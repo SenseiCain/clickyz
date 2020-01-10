@@ -21,15 +21,8 @@ class Build < ActiveRecord::Base
     end
 
     def delete_with_jpg
-        delete_jpg
+        File.delete("public/images/keyboard_saves/#{img_file}")
         self.delete
-    end
-    
-
-    private
-
-    def delete_jpg
-        File.delete("public/images/keyboard_saves/#{self.img_file}")
     end
 
     def create_jpg(params)
@@ -50,7 +43,7 @@ class Build < ActiveRecord::Base
         image.write "public/images/keyboard_saves/keyboard_#{rand_num}.jpg"
     
         #delete placeholder svg
-        delete_jpg
+        File.delete(filepath)
     
         #assign file to build
         self.img_file = "keyboard_#{rand_num}.jpg"
