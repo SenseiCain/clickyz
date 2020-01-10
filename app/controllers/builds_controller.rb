@@ -10,9 +10,7 @@ class BuildController < ApplicationController
 
     get "/edit" do
         @build = getBuild(params)
-
         redirect_if_not_authorized(@build)
-
         erb :edit_build
     end
 
@@ -20,7 +18,6 @@ class BuildController < ApplicationController
         if session[:user_id]
             Build.create_with_jpg(params, current_user)
             session.delete(:keyboard_data)
-
             redirect to '/builds'
         else
             session[:keyboard_data] = params.except("svg")
@@ -32,17 +29,13 @@ class BuildController < ApplicationController
         build = getBuild(params)
         redirect_if_not_authorized(build)
         build.update_with_jpg(params)
-
         redirect to '/builds'
     end
 
     delete "/builds/:id" do
         build = getBuild(params)
-
         redirect_if_not_authorized(build)
-
         build.delete_with_jpg
-
         redirect to '/builds'
     end
 
