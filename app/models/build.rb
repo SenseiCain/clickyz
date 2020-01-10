@@ -4,22 +4,18 @@ class Build < ActiveRecord::Base
     def self.create_with_jpg(params, user)
         build = Build.create(name: params["keyboard_name"], case: params["case"], cable: params["cable"], primary_color: params["keycaps_primary"], alt_color: params["keycaps_alt"])
         build.user = user
-
-        build.convert_svg_to_jpg(params)
+        build.create_jpg(params)
 
         build.save
     end
 
     def update_with_jpg(params)
-        #Update attrs
         self.name = params[:keyboard_name]
         self.primary_color = params[:keycaps_primary]
         self.alt_color = params[:keycaps_alt]
         self.case = params[:case]
         self.cable = params[:cable]
-
-        #Update Image
-        convert_svg_to_jpg(params)
+        create_jpg(params)
 
         self.save
     end
@@ -28,6 +24,7 @@ class Build < ActiveRecord::Base
         delete_jpg
         self.delete
     end
+    
 
     private
 
@@ -35,7 +32,7 @@ class Build < ActiveRecord::Base
         File.delete("public/images/keyboard_saves/#{self.img_file}")
     end
 
-    def convert_svg_to_jpg(params)
+    def create_jpg(params)
         #generates svg as placeholder
         rand_num = rand(1000)
         filepath = "lib/temp_svgs/temp_svg_#{rand_num}.svg"
