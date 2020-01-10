@@ -1,5 +1,5 @@
 
-# Project Title
+# Clickyz
 
 A custom mechanical keyboard editor.
 
