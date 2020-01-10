@@ -1,0 +1,8 @@
+#ignore keyboard saves
+**/keyboard_saves
+
+#ignore db
+*.sqlite
+
+#ignore tempfiles for svgs
+**/temp_svgs
