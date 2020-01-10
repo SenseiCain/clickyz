@@ -35,4 +35,9 @@ class UsersController < ApplicationController
         redirect to "/"
     end
 
+    helpers do
+        def logout
+            session.clear
+        end
+    end
 end
