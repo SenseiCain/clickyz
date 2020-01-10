@@ -31,13 +31,7 @@ class UsersController < ApplicationController
     end
     
     get "/logout" do
-        logout
+        session.clear
         redirect to "/"
-    end
-
-    helpers do
-        def logout
-            session.clear
-        end
     end
 end
