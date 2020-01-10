@@ -74,7 +74,7 @@ class BuildController < ApplicationController
         end
 
         def getBuild(params)
-            build = Build.find(params[:build_id])
+            build = Build.find(params[:id])
             build
         end
 
