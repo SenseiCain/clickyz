@@ -10,75 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-
-    if session[:user_id]
-      @user = current_user
-    end
-
     erb :editor
-  end
-
-  get "/builds" do
-
-    if session[:user_id]
-      @builds = current_user.builds
-      erb :builds
-    else
-      redirect to '/'
-    end
-  end
-
-  patch "/builds/:id" do
-
-    #update obj
-    build = Build.find(params[:id])
-    build.name = params[:keyboard_name]
-    build.primary_color = params[:keycaps_primary]
-    build.alt_color = params[:keycaps_alt]
-    build.case = params[:case]
-    build.cable = params[:cable]
-
-    #update image
-    delete_jpg(build)
-    convert_svg_to_jpg(params, build)
-
-    build.save
-
-    redirect to '/builds'
-  end
-
-  delete "/builds/:id" do
-    if session[:user_id] && current_user.builds.include?(Build.find(params[:id]))
-      build = Build.find(params[:id])
-      File.delete('public/images/keyboard_saves/' + build.img_file.to_s)
-      build.delete
-    end
-
-    redirect to '/builds'
-  end
-
-  post "/builds" do
-
-    if session[:user_id]
-      @build = create_build(params)
-      convert_svg_to_jpg(params, @build)
-      session.delete(:keyboard_data)
-      redirect to '/builds'
-    else
-      session[:keyboard_data] = params.except("svg")
-      redirect to '/login'
-    end
-    
-  end
-
-  get "/edit" do
-    @build = getBuild(params)
-
-    if current_user.builds.include?(@build)
-      erb :edit_build
-    else
-      redirect to '/'
-    end
   end
 
   get "/information" do
@@ -92,10 +24,20 @@ class ApplicationController < Sinatra::Base
 
   post "/register" do
 
-    @user = register(params)
-    session[:user_id] = @user.id
+    #binding.pry
 
-    redirect to "/"
+    if params["username"] != '' && params["email"] != '' && params["password"] != ''
+      @user = User.new(username: params["username"], email: params["email"], password: params["password"])
+
+      if @user.save
+        session[:user_id] = @user.id
+        redirect to "/"
+      else
+        redirect to "/login"
+      end
+    else
+      redirect to "/login"
+    end
   end
 
   post "/sessions" do
@@ -117,16 +59,18 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do 
+    def redirect_if_not_authorized(build)
+      if !session[:user_id] || !current_user.builds.include?(build)
+        redirect to '/builds'
+      end
+    end
+
     def current_user
       current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
     def logout
       session.clear
-    end
-
-    def register(params)
-      User.create(username: params["username"], email: params["email"], password: params["password"])
     end
 
     def getBuild(params)
