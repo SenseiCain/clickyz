@@ -24,8 +24,6 @@ class ApplicationController < Sinatra::Base
 
   post "/register" do
 
-    #binding.pry
-
     if params["username"] != '' && params["email"] != '' && params["password"] != ''
       @user = User.new(username: params["username"], email: params["email"], password: params["password"])
 
