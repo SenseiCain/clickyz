@@ -3,6 +3,7 @@
 
 #ignore db
 *.sqlite
+/db/*.sqlite3
 
 #ignore tempfiles for svgs
 **/temp_svgs
