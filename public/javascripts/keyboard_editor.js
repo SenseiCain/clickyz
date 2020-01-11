@@ -40,15 +40,12 @@
             
         }
 
-        //Sets keyboard Vars & SVG onLoad
+        //Sets keyboard Vars & recolors SVG onLoad
         findKeyboardComponents();
         changeKeyPrimaryColor();
         changeKeyAltColor();
         changeCaseColor();
         changeCableColor();
-
-        //Find params
-        //console.log(window.location.search.substr(1))
 
         //Adds keyboard data to submit form
         $("#build_form").submit(function(e){
