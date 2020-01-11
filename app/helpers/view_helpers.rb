@@ -7,6 +7,7 @@ class ViewHelpers
         !!session[:user_id]
     end
 
+    #Layout.erb
     def self.show_links(session, path)
         links = ["editor", "information"]
 
@@ -38,6 +39,7 @@ class ViewHelpers
         end.join(" ")
     end
 
+    #Index.erb
     def self.generate_options(selection_type, session)
         options = {
             "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
@@ -62,6 +64,7 @@ class ViewHelpers
         html_options.join('')
     end
 
+    #Edit.erb
     def self.generate_options_for_edit(build_atr, selection_type)
         options = {
             "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
