@@ -42,8 +42,7 @@
                                 </div>
                                 <div class="card-options d-flex align-items-end">
                                     
-                                    <form action="/edit" method="GET">
-                                        <input id="hidden" type="hidden" name="id" value="<%= b.id %>">
+                                    <form action="/builds/<%= b.id %>/edit" method="GET">
                                         <button type="submit" class="btn btn-primary mx-1">Edit</button>
                                     </form>
 

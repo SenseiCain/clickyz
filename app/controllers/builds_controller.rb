@@ -1,4 +1,5 @@
 class BuildController < ApplicationController
+
     get "/builds" do
         if session[:user_id]
             @builds = current_user.builds
@@ -6,12 +7,6 @@ class BuildController < ApplicationController
         else
             redirect to '/'
         end
-    end
-
-    get "/edit" do
-        @build = getBuild(params)
-        redirect_if_not_authorized(@build)
-        erb :edit_build
     end
 
     post "/builds" do
@@ -23,6 +18,13 @@ class BuildController < ApplicationController
             session[:keyboard_data] = params.except("svg")
             redirect to '/login'
         end
+    end
+
+    get "/builds/:id/edit" do
+        settings.public = File.dirname(__FILE__) + '/public'
+        @build = getBuild(params)
+        redirect_if_not_authorized(@build)
+        erb :edit
     end
 
     patch "/builds/:id" do
