@@ -21,7 +21,6 @@ class BuildController < ApplicationController
     end
 
     get "/builds/:id/edit" do
-        settings.public = File.dirname(__FILE__) + '/public'
         @build = getBuild(params)
         redirect_if_not_authorized(@build)
         erb :edit
