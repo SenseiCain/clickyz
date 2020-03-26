@@ -11,6 +11,8 @@ let primaryKeysUrl = 'images/keys_primary.obj';
 let angleZ = 170;
 let colorOptions = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'violet', 'crimson', 'salmon'];
 
+
+// P5 CONFIGURATIONS
 function preload() {
     caseModel = loadModel(caseUrl)
     altKeysModel = loadModel(altKeysUrl)
@@ -54,6 +56,7 @@ function draw() {
     caseObj.display()
 }
 
+
 // KEYBOARD COMPONENT CLASS
 class KeyboardComponent {
     constructor(model, color) {
@@ -71,13 +74,34 @@ class KeyboardComponent {
     }
 }
 
+
+// FUNCTIONS
 function randomColor(){
     let rand = Math.floor(Math.random() * colorOptions.length);
     return colorOptions[rand];
 }
 
-function updateColor(obj, color) {
-    obj.color = color;
+function changeColor(e) {
+    let selectedObj;
+    let targetId = e.target.id;
+
+    switch (targetId) {
+        case 'keycaps_primary_color':
+            selectedObj = primaryKeysObj;
+            break
+        case 'keycaps_alt_color':
+            selectedObj = altKeysObj;
+            break
+        case 'case_color':
+            selectedObj = caseObj;
+            break
+    }
+
+    selectedObj.color = e.target.value
 }
 
-console.log('test')
+
+// ON DOCUMENT READY
+$(document).ready(function() {
+    $("#input-group select").change(changeColor);
+  });

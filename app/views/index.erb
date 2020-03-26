@@ -2,7 +2,7 @@
     <script src="javascripts/index.js"></script>
     <link rel="stylesheet" href="stylesheets/editor.css">
 
-    <div id="svg_container" class="row justify-content-between py-5">
+    <div id="container" class="row justify-content-between py-5">
         <div id="canvas-container" class="col-6 text-left">
             
         </div>
@@ -17,29 +17,22 @@
                         
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_primary_color">Primary</label>
-                            <select name="keycaps_primary" id="keycaps_primary_color" onchange="changeKeyPrimaryColor()">
+                            <select name="keycaps_primary" id="keycaps_primary_color">
                                 <%= ViewHelpers.generate_options("keycaps_primary", session) %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="keycaps_alt_color">Alt</label>
-                            <select name="keycaps_alt" id="keycaps_alt_color" onchange="changeKeyAltColor()">
+                            <select name="keycaps_alt" id="keycaps_alt_color">
                                 <%= ViewHelpers.generate_options("keycaps_alt", session) %>
                             </select><br>
                         </div>
 
                         <div class="pt-2">
                             <label class="px-2" for="case_color">Case</label>
-                            <select name="case" id="case_color" onchange="changeCaseColor()">
+                            <select name="case" id="case_color">
                                 <%= ViewHelpers.generate_options("case", session) %>
-                            </select><br>
-                        </div>
-
-                        <div class="pt-2">
-                            <label class="px-2" for="cable_color">Cable</label>
-                            <select name="cable" id="cable_color" onchange="changeCableColor()">
-                                <%= ViewHelpers.generate_options("cable", session) %>
                             </select><br>
                         </div>
                     </div>
