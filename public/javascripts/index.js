@@ -8,11 +8,12 @@ let altKeysUrl = 'images/keys_alt.obj';
 let primaryKeysObj, primaryKeysModel, primaryKeysColor;
 let primaryKeysUrl = 'images/keys_primary.obj';
 
-let angleZ = -160;
-let colorOptions = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'violet', 'crimson', 'salmon'];
+let cnv;
+let slider;
+let angleZ;
 
 
-// P5 CONFIGURATIONS
+// P5 CONFIGURATION
 function preload() {
     caseModel = loadModel(caseUrl)
     altKeysModel = loadModel(altKeysUrl)
@@ -24,8 +25,15 @@ function preload() {
 }
 
 function setup() {
-    let cnv = createCanvas(600, 400, WEBGL);
+    // CANVAS
+    cnv = createCanvas(600, 400, WEBGL);
     cnv.parent('canvas-container');
+
+    // SLIDER
+    slider = createSlider(0, 100)
+    slider.position((width / 2 - 100), height)
+    slider.style('width', '200px')
+    slider.parent('canvas-container')
 
     // CREATE OBJS
     caseObj = new KeyboardComponent(caseModel, caseColor)
@@ -41,15 +49,15 @@ function draw() {
     directionalLight(100, 100, 100, 8, 100, 0)
     ambientLight(150)
 
+    // CURSOR ROTATION
+    angleZ = (((slider.value() - 50) / 50) * 180) + 190
+
     // TRANSFORMATIONS
     scale(1.5)
     translate(0, -20, 0)
     rotateX(radians(60))
     rotateZ(radians(angleZ))
     noStroke()
-    
-    // CURSOR ROTATION
-    // angleZ+=0.5    
 
     // RENDER
     primaryKeysObj.display()
