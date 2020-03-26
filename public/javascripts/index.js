@@ -18,9 +18,9 @@ function preload() {
     altKeysModel = loadModel(altKeysUrl)
     primaryKeysModel = loadModel(primaryKeysUrl)
 
-    caseColor = randomColor()
-    altKeysColor = randomColor()
-    primaryKeysColor = randomColor()
+    caseColor = $('#case_color').val()
+    altKeysColor = $('#keycaps_alt_color').val()
+    primaryKeysColor = $('#keycaps_primary_color').val()
 }
 
 function setup() {
@@ -77,11 +77,6 @@ class KeyboardComponent {
 
 
 // FUNCTIONS
-function randomColor(){
-    let rand = Math.floor(Math.random() * colorOptions.length);
-    return colorOptions[rand];
-}
-
 function changeColor(e) {
     let selectedObj;
     let targetId = e.target.id;
