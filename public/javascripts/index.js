@@ -8,7 +8,7 @@ let altKeysUrl = 'images/keys_alt.obj';
 let primaryKeysObj, primaryKeysModel, primaryKeysColor;
 let primaryKeysUrl = 'images/keys_primary.obj';
 
-let angleZ = 170;
+let angleZ = -160;
 let colorOptions = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'violet', 'crimson', 'salmon'];
 
 
@@ -24,8 +24,8 @@ function preload() {
 }
 
 function setup() {
-    let cnv = createCanvas(500, 400, WEBGL);
-    cnv.parent('canvas-container')
+    let cnv = createCanvas(600, 400, WEBGL);
+    cnv.parent('canvas-container');
 
     // CREATE OBJS
     caseObj = new KeyboardComponent(caseModel, caseColor)
@@ -34,21 +34,22 @@ function setup() {
 }
 
 function draw() {
-    background('transparent');
+    $('canvas').css("transform", "scaleX(-1)")
+    background(243.1);
 
     // LIGHTING
     directionalLight(100, 100, 100, 8, 100, 0)
     ambientLight(150)
 
     // TRANSFORMATIONS
-    scale(1.3)
-    translate(0, 0, 0)
+    scale(1.5)
+    translate(0, -20, 0)
     rotateX(radians(60))
     rotateZ(radians(angleZ))
     noStroke()
     
     // CURSOR ROTATION
-    // angleZ-=0.5    
+    // angleZ+=0.5    
 
     // RENDER
     primaryKeysObj.display()
