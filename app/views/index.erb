@@ -1,9 +1,10 @@
-    <script src="javascripts/keyboard_editor.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+    <script src="javascripts/index.js"></script>
     <link rel="stylesheet" href="stylesheets/editor.css">
 
     <div id="svg_container" class="row justify-content-between py-5">
-        <div class="col-6 text-left">
-            <%= File.read('./public/images/keyboard_v2.svg') %>
+        <div id="canvas-container" class="col-6 text-left">
+            
         </div>
         <div class="col-3 bg-light text-right">
             <form id="build_form" style="height: 100%" action="/builds" method="POST">
