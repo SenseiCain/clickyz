@@ -1,3 +1,4 @@
 #ignore db
 *.sqlite
 /db/*.sqlite3
+/public/images/keyboard_saves/*

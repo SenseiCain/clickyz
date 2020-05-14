@@ -28,26 +28,14 @@ class Build < ActiveRecord::Base
     def create_jpg(params)
         #Generate placeholder file for SVG that is to be converted (MiniMagick req)
         rand_num = rand(1000)
-        filepath = "lib/temp_svgs/temp_svg_#{rand_num}.svg"
+        filepath = "public/images/keyboard_saves/keyboard_#{rand_num}.png"
 
         #Reformat SVG with original metadata
-        temp_file = File.open(filepath, "w")  do |f| 
-            text_2 = params[:svg] + '</svg>'
-            text_2.slice! "<svg>"
-    
-            f.write(File.open('lib/svgs/metadata.txt', 'r').read)
-            f.write(text_2)
+        File.open(filepath, "wb")  do |f| 
+            f.write(Base64.decode64(params[:image]['data:image/png;base64,'.length .. -1]))
         end
-
-        #Converts SVG to JPG & save
-        image = MiniMagick::Image.open(filepath)
-        image.format "jpg"
-        image.write "public/images/keyboard_saves/keyboard_#{rand_num}.jpg"
-    
-        #Delete placeholder SVG
-        File.delete(filepath)
     
         #Assign file to build
-        self.img_file = "keyboard_#{rand_num}.jpg"
+        self.img_file = "keyboard_#{rand_num}.png"
     end
 end

@@ -110,6 +110,7 @@ $(document).ready(function() {
     $("#input-group select").change(changeColor);
 
     $('#build_form').submit(e => {
+
         const img = $('#canvas-container canvas')[0].toDataURL('image/jpg');
         
         let inputEl = document.createElement('input');
@@ -118,7 +119,6 @@ $(document).ready(function() {
         inputEl.value = img;
 
         e.target.appendChild(inputEl);
-
     })
 });
 

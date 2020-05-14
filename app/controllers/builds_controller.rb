@@ -15,7 +15,7 @@ class BuildController < ApplicationController
             session.delete(:keyboard_data)
             redirect to '/builds'
         else
-            session[:keyboard_data] = params.except("svg")
+            session[:keyboard_data] = params.except("image")
             redirect to '/login'
         end
     end
