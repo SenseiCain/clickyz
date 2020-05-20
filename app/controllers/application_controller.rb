@@ -10,7 +10,6 @@ class ApplicationController < Sinatra::Base
       set :root, File.dirname(__FILE__)
     end
   
-
   get "/" do
     erb :index
   end

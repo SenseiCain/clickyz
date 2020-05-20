@@ -15,12 +15,12 @@ class UsersController < ApplicationController
                 redirect to "/login"
             end
         else
-                redirect to "/login"
+            redirect to "/login"
         end
     end
     
     post "/sessions" do
-        user = User.find_by(:email => params["email"])
+        user = User.find_by(email: params["email"])
         
         if user && user.authenticate(params["password"])
             session[:user_id] = user.id
