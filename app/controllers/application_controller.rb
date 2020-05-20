@@ -15,9 +15,4 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get "/information" do
-    #Future functionality - RESTful pages that show info on cases/switches/keycaps
-    erb :information
-  end
-
 end

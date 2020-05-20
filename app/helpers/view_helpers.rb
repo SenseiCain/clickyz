@@ -9,7 +9,7 @@ class ViewHelpers
 
     #Layout.erb
     def self.show_links(session, path)
-        links = ["editor", "information"]
+        links = ["editor"]
 
         if is_logged_in?(session)
             links.push("logged_in")
