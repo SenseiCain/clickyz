@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'mini_magick'
+gem 'google-cloud-storage'
 
 group :test do
   gem 'rspec'

@@ -42,7 +42,6 @@ function setup() {
 }
 
 function draw() {
-    $('canvas').css("transform", "scaleX(-1)")
     background(243.1);
 
     // LIGHTING
@@ -50,7 +49,7 @@ function draw() {
     ambientLight(150)
 
     // CURSOR ROTATION
-    angleZ = (((slider.value() - 50) / 50) * 180) + 190
+    angleZ = (((slider.value() - 50) / 50) * 180) + 160
 
     // TRANSFORMATIONS
     scale(1.5)
@@ -111,15 +110,18 @@ $(document).ready(function() {
 
     $('#build_form').submit(e => {
 
-        const img = $('#canvas-container canvas')[0].toDataURL('image/jpg');
-        
-        let inputEl = document.createElement('input');
-        inputEl.type = "hidden";
-        inputEl.name = "image";
-        inputEl.value = img;
+        // Data URL from Canvas
+        const dataURL = $('#canvas-container canvas')[0].toDataURL('image/png');
 
-        e.target.appendChild(inputEl);
+        const hiddenEl = document.createElement("input");
+        hiddenEl.type = "hidden";
+        hiddenEl.name = "image_data"
+        hiddenEl.value = dataURL;
+
+        $("#build_form").append(hiddenEl);
     })
 });
+
+
 
 

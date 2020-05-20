@@ -1,4 +1,7 @@
-#ignore db
+#Ignor DB
 *.sqlite
 /db/*.sqlite3
 /public/images/keyboard_saves/*
+
+#Ignore Google credentials
+/*.json

@@ -1,3 +1,5 @@
+require 'google/cloud/storage'
+
 class BuildController < ApplicationController
 
     get "/builds" do
@@ -11,8 +13,25 @@ class BuildController < ApplicationController
 
     post "/builds" do
         if session[:user_id]
-            Build.create_with_jpg(params, current_user)
             session.delete(:keyboard_data)
+
+            storage = Google::Cloud::Storage.new(
+                project_id: "youtubesearch-167217",
+                credentials: "/Users/christiancain/Desktop/Flatiron/projects/clickyz/youtubesearch-167217-28e69b8eb833.json"
+            )
+
+            bucket  = storage.bucket "clickyz-builds"
+
+            tempfile_name = "#{SecureRandom.hex(10)}-build.png"
+
+            tempfile = Tempfile.new(['image', '.png'], binmode: true)
+            tempfile.write(Base64.decode64(params[:image_data].remove("data:image/png;base64,")))
+
+            bucket.create_file tempfile.path, tempfile_name
+
+            Build.create_with_jpg(params, current_user, tempfile_name)
+
+
             redirect to '/builds'
         else
             session[:keyboard_data] = params.except("image")

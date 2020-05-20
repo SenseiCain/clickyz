@@ -1,10 +1,9 @@
 class Build < ActiveRecord::Base
     belongs_to :user
 
-    def self.create_with_jpg(params, user)
-        build = Build.create(name: params["keyboard_name"], case: params["case"], cable: params["cable"], primary_color: params["keycaps_primary"], alt_color: params["keycaps_alt"])
+    def self.create_with_jpg(params, user, img_filename)
+        build = Build.create(name: params["keyboard_name"], case: params["case"], cable: params["cable"], primary_color: params["keycaps_primary"], alt_color: params["keycaps_alt"], img_url: img_filename)
         build.user = user
-        build.create_jpg(params)
 
         build.save
     end
