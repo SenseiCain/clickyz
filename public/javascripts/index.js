@@ -1,14 +1,16 @@
 // DECLARATIONS
-const caseUrl = 'images/keyboard_case.obj';
-const altKeysUrl = 'images/keys_alt.obj';
-const primaryKeysUrl = 'images/keys_primary.obj';
+const urls = {
+    case: 'images/keyboard_case.obj',
+    aletKeys: 'images/keys_alt.obj',
+    primaryKeys: 'images/keys_primary.obj'
+}
 
 // P5 CONFIGURATIONS
 const p5Config = (p) => {
     p.preload = () => {
-        caseModel = p.loadModel(caseUrl)
-        altKeysModel = p.loadModel(altKeysUrl)
-        primaryKeysModel = p.loadModel(primaryKeysUrl)
+        caseModel = p.loadModel(urls.case)
+        altKeysModel = p.loadModel(urls.aletKeys)
+        primaryKeysModel = p.loadModel(urls.primaryKeys)
     
         caseColor = $('#case_color').val()
         altKeysColor = $('#keycaps_alt_color').val()
