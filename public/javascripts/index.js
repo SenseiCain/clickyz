@@ -1,118 +1,115 @@
 // DECLARATIONS
-let caseObj, caseModel, caseColor;
-let caseUrl = 'images/keyboard_case.obj';
+const caseUrl = 'images/keyboard_case.obj';
+const altKeysUrl = 'images/keys_alt.obj';
+const primaryKeysUrl = 'images/keys_primary.obj';
 
-let altKeysObj, altKeysModel, altKeysColor;
-let altKeysUrl = 'images/keys_alt.obj';
+// P5 CONFIGURATIONS
+const p5Config = (p) => {
+    p.preload = () => {
+        caseModel = p.loadModel(caseUrl)
+        altKeysModel = p.loadModel(altKeysUrl)
+        primaryKeysModel = p.loadModel(primaryKeysUrl)
+    
+        caseColor = $('#case_color').val()
+        altKeysColor = $('#keycaps_alt_color').val()
+        primaryKeysColor = $('#keycaps_primary_color').val()
 
-let primaryKeysObj, primaryKeysModel, primaryKeysColor;
-let primaryKeysUrl = 'images/keys_primary.obj';
+        stopRotation = false
+    }
 
-let cnv;
-let slider;
-let angleZ;
+    p.setup = () => {
+        // CANVAS
+        p.createCanvas(600, 400, p.WEBGL);
+    
+        // SLIDER
+        slider = p.createSlider(0, 100)
+        slider.position((p.width / 2 - 100), p.height)
+        slider.style('width', '200px')
+        slider.parent('canvas-container')
+    
+        // CREATE OBJS
+        caseObj = new KeyboardComponent(caseModel, p)
+        altKeysObj = new KeyboardComponent(altKeysModel, p)
+        primaryKeysObj = new KeyboardComponent(primaryKeysModel, p)
 
+    }
 
-// P5 CONFIGURATION
-function preload() {
-    caseModel = loadModel(caseUrl)
-    altKeysModel = loadModel(altKeysUrl)
-    primaryKeysModel = loadModel(primaryKeysUrl)
+    p.draw = () => {
+        p.background(243.1);
+    
+        // LIGHTING
+        p.directionalLight(100, 100, 100, 8, 100, 0)
+        p.ambientLight(150)
+    
+        // CURSOR ROTATION
+        amount = (stopRotation) ? 50 : slider.value()
+        angleZ = (((amount - 50) / 50) * 180) + 200
+    
+        // TRANSFORMATIONS
+        p.scale(1.5)
+        p.translate(0, -20, 0)
+        p.rotateX(p.radians(60))
+        p.rotateZ(p.radians(angleZ))
+        p.noStroke()
+    
+        // RENDER
+        primaryKeysObj.display(primaryKeysColor)
+        altKeysObj.display(altKeysColor)
+        caseObj.display(caseColor)
+    }
 
-    caseColor = $('#case_color').val()
-    altKeysColor = $('#keycaps_alt_color').val()
-    primaryKeysColor = $('#keycaps_primary_color').val()
+    p.updateColor = (targetObj, newColor) => {
+        switch (targetObj) {
+            case 'keycaps_primary_color':
+                primaryKeysColor = newColor;
+                break
+            case 'keycaps_alt_color':
+                altKeysColor = newColor;
+                break
+            case 'case_color':
+                caseColor = newColor;
+                break
+        }
+    }
+
+    p.reset = () => {
+        stopRotation = true;
+        p.redraw();
+        p.noLoop();
+    }
 }
-
-function setup() {
-    // CANVAS
-    cnv = createCanvas(600, 400, WEBGL);
-    cnv.parent('canvas-container');
-
-    // SLIDER
-    slider = createSlider(0, 100)
-    slider.position((width / 2 - 100), height)
-    slider.style('width', '200px')
-    slider.parent('canvas-container')
-
-    // CREATE OBJS
-    caseObj = new KeyboardComponent(caseModel, caseColor)
-    altKeysObj = new KeyboardComponent(altKeysModel, altKeysColor)
-    primaryKeysObj = new KeyboardComponent(primaryKeysModel, primaryKeysColor)
-}
-
-function draw() {
-    background(243.1);
-
-    // LIGHTING
-    directionalLight(100, 100, 100, 8, 100, 0)
-    ambientLight(150)
-
-    // CURSOR ROTATION
-    angleZ = (((slider.value() - 50) / 50) * 180) + 160
-
-    // TRANSFORMATIONS
-    scale(1.5)
-    translate(0, -20, 0)
-    rotateX(radians(60))
-    rotateZ(radians(angleZ))
-    noStroke()
-
-    // RENDER
-    primaryKeysObj.display()
-    altKeysObj.display()
-    caseObj.display()
-}
-
 
 // KEYBOARD COMPONENT CLASS
 class KeyboardComponent {
-    constructor(model, color) {
+    constructor(model, p) {
         this.model = model
-        this.color = color
+        this.p5 = p
     }
 
-    changeColor(newColor){
-        this.color = newColor
-    }
-
-    display(){
-        specularMaterial(this.color)
-        model(this.model)
+    display(color){
+        this.p5.specularMaterial(color)
+        this.p5.model(this.model)
     }
 }
 
-
-// FUNCTIONS
-function changeColor(e) {
-    let selectedObj;
-    let targetId = e.target.id;
-
-    switch (targetId) {
-        case 'keycaps_primary_color':
-            selectedObj = primaryKeysObj;
-            break
-        case 'keycaps_alt_color':
-            selectedObj = altKeysObj;
-            break
-        case 'case_color':
-            selectedObj = caseObj;
-            break
-    }
-
-    selectedObj.color = e.target.value
-}
-
+// P5 INSTANCE
+let myp5 = new p5(p5Config, 'canvas-container')
 
 // ON DOCUMENT READY
 $(document).ready(function() {
-    $("#input-group select").change(changeColor);
+    // Changes color of keyboard components
+    $("#input-group select").change(e => {
+        myp5.updateColor(e.target.id, e.target.value);
+    });
 
     $('#build_form').submit(e => {
+        // Reverts keyboard back to original state
+        myp5.reset();
 
         // Data URL from Canvas
         const dataURL = $('#canvas-container canvas')[0].toDataURL('image/png');
 
+        // Appends image data to form
         const hiddenEl = document.createElement("input");
         hiddenEl.type = "hidden";
         hiddenEl.name = "image_data"
@@ -121,7 +118,3 @@ $(document).ready(function() {
         $("#build_form").append(hiddenEl);
     })
 });
-
-
-
-
