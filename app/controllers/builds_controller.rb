@@ -71,7 +71,7 @@ class BuildController < ApplicationController
             bucket  = storage.bucket "clickyz-builds"
             tempfile = Tempfile.new(['image', '.png'], binmode: true)
             tempfile.write(Base64.decode64(params[:image_data].remove("data:image/png;base64,")))
-            bucket.create_file tempfile.path, tempfile_name
+            bucket.create_file tempfile.path, filename
         end
     end
 end
