@@ -44,8 +44,7 @@ class ViewHelpers
         options = {
             "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
             "keycaps_alt" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
-            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"],
-            "cable" => ["Crimson", "Orange", "Navy", "Orchid", "HotPink", "Lime", "Cyan", "Gold"]
+            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"]
         }
 
         options_rand = rand(0...options[selection_type].length)
@@ -69,8 +68,7 @@ class ViewHelpers
         options = {
             "keycaps_primary" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
             "keycaps_alt" => ["AntiqueWhite", "Snow", "DimGrey", "Aquamarine", "DarkOrange", "Navy", "Turquoise", "HotPink", "Orchid", "GoldenRod", "Crimson", "Lime", "PowderBlue"],
-            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"],
-            "cable" => ["Crimson", "Orange", "Navy", "Orchid", "HotPink", "Lime", "Cyan", "Gold"]
+            "case" => ["SlateGrey", "Silver", "GoldenRod", "BurlyWood", "DarkOliveGreen", "LightSeaGreen", "LimeGreen", "Salmon", "Chocolate", "BlueViolet", "Navy"]
         }
 
         html_options = []
