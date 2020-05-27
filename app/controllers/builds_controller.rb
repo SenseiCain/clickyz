@@ -2,6 +2,10 @@ require 'google/cloud/storage'
 
 class BuildController < ApplicationController
 
+    configure do
+        set :public_folder, 'public'
+      end
+
     get "/builds" do
         if session[:user_id]
             @builds = current_user.builds

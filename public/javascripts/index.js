@@ -1,8 +1,8 @@
 // DECLARATIONS
 const urls = {
-    case: 'images/keyboard_case.obj',
-    aletKeys: 'images/keys_alt.obj',
-    primaryKeys: 'images/keys_primary.obj'
+    case: '/images/keyboard_case.obj',
+    aletKeys: '/images/keys_alt.obj',
+    primaryKeys: '/images/keys_primary.obj'
 }
 
 // P5 CONFIGURATIONS
@@ -49,6 +49,7 @@ const p5Config = (p) => {
     
         // TRANSFORMATIONS
         p.scale(1.5)
+        p.scale(-1, 1, 1)
         p.translate(0, -20, 0)
         p.rotateX(p.radians(60))
         p.rotateZ(p.radians(angleZ))
