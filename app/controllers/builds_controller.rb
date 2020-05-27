@@ -19,9 +19,8 @@ class BuildController < ApplicationController
         if session[:user_id]
             session.delete(:keyboard_data)
 
-            tempfile_name = "#{SecureRandom.hex(10)}-build.png"
-            upload_image_to_google(tempfile_name)
-            Build.create_with_jpg(params, current_user, tempfile_name)
+            filename = upload_image_to_google
+            Build.create_with_img(params, current_user, filename)
 
             redirect to '/builds'
         else
@@ -39,7 +38,11 @@ class BuildController < ApplicationController
     patch "/builds/:id" do
         build = getBuild(params)
         redirect_if_not_authorized(build)
-        build.update_with_jpg(params)
+
+        delete_previous_file_from_google(build.img_url)
+        filename = upload_image_to_google
+        build.update_with_img(params, filename)
+
         redirect to '/builds'
     end
 
@@ -65,7 +68,9 @@ class BuildController < ApplicationController
             end
         end
 
-        def upload_image_to_google(filename)
+        def upload_image_to_google
+            filename = "#{SecureRandom.hex(10)}-build.png"
+
             storage = Google::Cloud::Storage.new(
                 project_id: "youtubesearch-167217",
                 credentials: "/Users/christiancain/Desktop/Flatiron/projects/clickyz/youtubesearch-167217-28e69b8eb833.json"
@@ -75,6 +80,20 @@ class BuildController < ApplicationController
             tempfile = Tempfile.new(['image', '.png'], binmode: true)
             tempfile.write(Base64.decode64(params[:image_data].remove("data:image/png;base64,")))
             bucket.create_file tempfile.path, filename
+
+            filename
+        end
+
+        def delete_previous_file_from_google(filename)
+            storage = Google::Cloud::Storage.new(
+                project_id: "youtubesearch-167217",
+                credentials: "/Users/christiancain/Desktop/Flatiron/projects/clickyz/youtubesearch-167217-28e69b8eb833.json"
+            )
+
+            bucket = storage.bucket "clickyz-builds"
+            file = bucket.file filename
+
+            file.delete
         end
     end
 end
