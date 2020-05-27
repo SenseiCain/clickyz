@@ -11,8 +11,8 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'tux'
-gem 'mini_magick'
 gem 'google-cloud-storage'
+gem 'sprockets'
 
 group :test do
   gem 'rspec'
