@@ -10,8 +10,9 @@ html, body {
 }
 
 #logo-container img{
-  width: 100px;
-  height: 40px;
+  width: 100px !important;
+  height: 40px !important;
+}
 
 @media screen {
   /* --- Reset Styles --- */

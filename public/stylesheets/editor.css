@@ -13,12 +13,3 @@ p{
 .darker{
     filter: grayscale(50%) !important;
 }
-
-svg{
-    width: 100%;
-    height: 100%;
-}
-
-canvas{
-    transform: scaleX(-1);
-}

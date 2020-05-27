@@ -52,8 +52,7 @@ class BuildController < ApplicationController
         end
 
         def getBuild(params)
-            build = Build.find(params[:id])
-            build
+            Build.find(params[:id])
         end
 
         def redirect_if_not_authorized(build)

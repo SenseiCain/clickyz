@@ -1,26 +1,26 @@
+<style>
+    .card-body-img {
+        width: 90px;
+        height: 90px;
+
+    }
+
+    .card-body-img img {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
+
+    img{
+        width: 100%;
+        height: 100%;
+    }
+
+    li{
+        list-style-type: none;
+    }
+</style>
+
 <div class="container py-5 col-10" id="builds_container">
-
-    <style>
-        .card-body-img {
-            width: 90px;
-            height: 90px;
-
-        }
-
-        .card-body-img img {
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-        }
-
-        img{
-            width: 100%;
-            height: 100%;
-        }
-
-        li{
-            list-style-type: none;
-        }
-    </style>
 
     <div class="accordian-container" >
         <div id="accordion">
@@ -47,7 +47,6 @@
                                         <li>Case: <%= b.case %></li>
                                         <li>Primary Color: <%= b.primary_color %></li>
                                         <li>Alt Color: <%= b.alt_color %></li>
-                                        <li>Cable: <%= b.cable %></li>
                                     </ul>
                                 </div>
                                 <div class="card-options d-flex align-items-end">
