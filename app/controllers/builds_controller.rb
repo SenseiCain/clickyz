@@ -75,7 +75,7 @@ class BuildController < ApplicationController
 
             storage = Google::Cloud::Storage.new(
                 project_id: "youtubesearch-167217",
-                credentials: "/Users/christiancain/Desktop/Flatiron/projects/clickyz/youtubesearch-167217-28e69b8eb833.json"
+                credentials: "./youtubesearch-167217-28e69b8eb833.json"
             )
 
             bucket  = storage.bucket "clickyz-builds"
@@ -89,7 +89,7 @@ class BuildController < ApplicationController
         def delete_previous_file_from_google(filename)
             storage = Google::Cloud::Storage.new(
                 project_id: "youtubesearch-167217",
-                credentials: "/Users/christiancain/Desktop/Flatiron/projects/clickyz/youtubesearch-167217-28e69b8eb833.json"
+                credentials: "./youtubesearch-167217-28e69b8eb833.json"
             )
 
             bucket = storage.bucket "clickyz-builds"
