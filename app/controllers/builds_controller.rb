@@ -49,7 +49,9 @@ class BuildController < ApplicationController
     delete "/builds/:id" do
         build = getBuild(params)
         redirect_if_not_authorized(build)
-        build.delete_with_jpg
+        delete_previous_file_from_google(build.img_url)
+        build.delete
+
         redirect to '/builds'
     end
 
