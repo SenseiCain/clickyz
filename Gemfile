@@ -12,6 +12,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'google-cloud-storage'
 gem 'pg', '~> 0.18'
+gem 'dotenv'
 
 group :test do
   gem 'rspec'
