@@ -11,7 +11,7 @@ configure :development do
 end
  
  configure :production do
-  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/clickyz')
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres://wwsalxzfieypup:314499cc62165c8b82cc6f51b31aea34da2127a10e1a495735b0f451d6e4b248@ec2-54-86-170-8.compute-1.amazonaws.com:5432/dc72pdva0nbjj6')
  
   ActiveRecord::Base.establish_connection(
     :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
