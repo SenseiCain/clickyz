@@ -3,20 +3,20 @@
 
 A custom mechanical keyboard editor.
 
-This is an app that I created for Flatiron School. I was asked to demonstrate my understanding of: Sinatra, MVC, Activerecord, CRUD, RESTful routes, and authentication.
+This is a project for Flatiron that I made using Sinatra, p5.js, WEBGL, and Google Cloud Storage.
 
-## Contributing
+## Screenshot
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+<img src="https://raw.githubusercontent.com/SenseiCain/clickyz/master/preview.png" width=500>
 
-## Authors
+## Getting Started
 
-* **Christian Cain** - *Initial work* 
+Currently the application is only available to run locally.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* MiniMagick
+First Fork & Clone this repo, then run the following commands in order.
+```
+bundle install
+rails db:create
+rails db:migrate
+shotgun
+```
