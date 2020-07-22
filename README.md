@@ -16,7 +16,7 @@ Currently the application is only available to run locally.
 First Fork & Clone this repo, then run the following commands in order.
 ```
 bundle install
-rails db:create
-rails db:migrate
+rake db:create
+rake db:migrate
 shotgun
 ```
