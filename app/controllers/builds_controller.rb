@@ -73,9 +73,11 @@ class BuildController < ApplicationController
         def upload_image_to_google
             filename = "#{SecureRandom.hex(10)}-build.png"
 
+            # binding.pry
+
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["GOOGLE_CREDENTIALS"]["project_id"],
-                credentials: ENV["GOOGLE_CREDENTIALS"]
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket  = storage.bucket "clickyz-builds"
@@ -88,8 +90,8 @@ class BuildController < ApplicationController
 
         def delete_previous_file_from_google(filename)
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["GOOGLE_CREDENTIALS"]["project_id"],
-                credentials: ENV["GOOGLE_CREDENTIALS"]
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket = storage.bucket "clickyz-builds"

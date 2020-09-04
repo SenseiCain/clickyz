@@ -1,5 +1,8 @@
 require 'bundler/setup'
+require 'dotenv/load'
 Bundler.require
+
+Dotenv.load
 
 configure :development do
   ENV['SINATRA_ENV'] ||= "development"
