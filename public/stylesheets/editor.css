@@ -13,3 +13,7 @@ p{
 .darker{
     filter: grayscale(50%) !important;
 }
+
+canvas {
+    max-width: 100%;
+}

@@ -1,5 +1,6 @@
 .login-form {
-    width: 340px;
+    max-width: 340px;
+    width: calc(100% - 20px);
 }
 
 .login-form form {

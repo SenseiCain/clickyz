@@ -25,8 +25,8 @@ const p5Config = (p) => {
     
         // SLIDER
         slider = p.createSlider(0, 100)
-        slider.position((p.width / 2 - 100), p.height)
-        slider.style('width', '200px')
+        slider.style('max-width', '200px')
+        slider.style('padding', '0px 10px');
         slider.parent('canvas-container')
     
         // CREATE OBJS

@@ -4,14 +4,27 @@ html, body {
   background-color: rgb(236, 236, 236) !important;
 }
 
+#container {
+  margin: 0px;
+}
+
 #content-container {
   height: 100% !important;
-  background-color: rgb(243, 243, 243)
+  width: 100%;
+  padding: 0px 10px;
+  background-color: rgb(243, 243, 243);
 }
 
 #logo-container img{
   width: 100px !important;
   height: 40px !important;
+}
+
+#canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 @media screen {

@@ -17,13 +17,16 @@
     <body>
 
         <div class="container bg-light">
-            <nav class="d-flex navbar navbar-expand-lg navbar-light">
+            <nav class="d-flex navbar navbar-expand-md navbar-light">
                 <div id="logo-container">
                     <a href="/"><img src="/images/logo.png"></a>
                 </div>
-                <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
                 
-                    <ul class="navbar-nav ml-auto flex-nowrap">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-grow-1 text-right" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
                         <%= ViewHelpers.show_links(session, request.path_info) %>
                     </ul>
                 </div>
