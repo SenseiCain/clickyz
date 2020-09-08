@@ -1,5 +1,4 @@
 require 'google/cloud/storage'
-require 'json'
 
 class BuildController < ApplicationController
 
@@ -77,11 +76,13 @@ class BuildController < ApplicationController
             # binding.pry
 
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["PROJECT_ID"]),
-                credentials: JSON.parse(ENV["GOOGLE_CREDENTIALS"])
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket  = storage.bucket "clickyz-builds"
+            rule = bucket.cors.first
+            rule.headers = application/x-www-form-urlencoded
             tempfile = Tempfile.new(['image', '.png'], binmode: true)
             tempfile.write(Base64.decode64(params[:image_data].remove("data:image/png;base64,")))
             bucket.create_file tempfile.path, filename
@@ -91,11 +92,13 @@ class BuildController < ApplicationController
 
         def delete_previous_file_from_google(filename)
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["PROJECT_ID"]),
-                credentials: JSON.parse(ENV["GOOGLE_CREDENTIALS"])
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket = storage.bucket "clickyz-builds"
+            rule = bucket.cors.first
+            rule.headers = application/x-www-form-urlencoded
             file = bucket.file filename
 
             file.delete
