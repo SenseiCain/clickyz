@@ -1,5 +1,4 @@
 require 'google/cloud/storage'
-require 'json'
 
 class BuildController < ApplicationController
 
@@ -77,8 +76,8 @@ class BuildController < ApplicationController
             # binding.pry
 
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["PROJECT_ID"]),
-                credentials: JSON.parse(ENV["GOOGLE_CREDENTIALS"])
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket  = storage.bucket "clickyz-builds"
@@ -91,8 +90,8 @@ class BuildController < ApplicationController
 
         def delete_previous_file_from_google(filename)
             storage = Google::Cloud::Storage.new(
-                project_id: ENV["PROJECT_ID"]),
-                credentials: JSON.parse(ENV["GOOGLE_CREDENTIALS"])
+                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
             bucket = storage.bucket "clickyz-builds"
