@@ -77,6 +77,6 @@ test:
 #
 production:
   <<: *default
-  database: dc72pdva0nbjj6
-  username: wwsalxzfieypup
-  password: 314499cc62165c8b82cc6f51b31aea34da2127a10e1a495735b0f451d6e4b248
+  database: d4162m9d72u9ea
+  username: jlfrsqkynlabfq
+  password: a23870cc676d6eb0724aef46a7257975e174553e32b964b596252f11eb59b571
