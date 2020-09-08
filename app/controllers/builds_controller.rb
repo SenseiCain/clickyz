@@ -81,10 +81,16 @@ class BuildController < ApplicationController
             )
 
             bucket  = storage.bucket "clickyz-builds"
-            rule = bucket.cors.first
-            rule.headers = application/x-www-form-urlencoded
+
+            bucket.cors do |c|
+                c.add_rule "*",
+                            "*",
+                            headers: ["application/x-www-form-urlencoded"]
+            end
+
             tempfile = Tempfile.new(['image', '.png'], binmode: true)
             tempfile.write(Base64.decode64(params[:image_data].remove("data:image/png;base64,")))
+
             bucket.create_file tempfile.path, filename
 
             filename
@@ -97,8 +103,13 @@ class BuildController < ApplicationController
             )
 
             bucket = storage.bucket "clickyz-builds"
-            rule = bucket.cors.first
-            rule.headers = application/x-www-form-urlencoded
+            
+            bucket.cors do |c|
+                c.add_rule "*",
+                            "*",
+                            headers: ["application/x-www-form-urlencoded"]
+            end
+            
             file = bucket.file filename
 
             file.delete
