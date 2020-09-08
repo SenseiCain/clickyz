@@ -76,7 +76,7 @@ class BuildController < ApplicationController
             # binding.pry
 
             storage = Google::Cloud::Storage.new(
-                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                project_id: ENV["PROJECT_ID"]),
                 credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
@@ -90,7 +90,7 @@ class BuildController < ApplicationController
 
         def delete_previous_file_from_google(filename)
             storage = Google::Cloud::Storage.new(
-                project_id: eval(ENV["GOOGLE_CREDENTIALS"])[:project_id],
+                project_id: ENV["PROJECT_ID"]),
                 credentials: eval(ENV["GOOGLE_CREDENTIALS"])
             )
 
